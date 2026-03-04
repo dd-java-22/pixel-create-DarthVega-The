@@ -1,4 +1,4 @@
-# Personal Android Project Template
+# Pixel Create App
 
 [//]: # (TODO Update title.  )
 
@@ -10,6 +10,6 @@
 
 [//]: # (TODO Include author)
 
-&copy; 2026 by (_author_).
+&copy; 2026 by Mark Vega all rights reserved.
 
 [//]: # (TODO Add license info)

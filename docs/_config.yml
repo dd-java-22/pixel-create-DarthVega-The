@@ -8,14 +8,13 @@ titles_from_headings:
 prev_next_navigation:
 - bottom
 
-# TODO Modify the contents below for the specific project. NOTE THE INDENTATION!
 
-title: "Personal Android Project"
-description: "Trust me, it'll be cool!"
+title: "Pixel Create"
+description: "Creating art one pixel at a time!"
 version: "1.0.0"
 author:
-  name: "DDC Student"
-  email: "myemail@student.cnm.edu"
+  name: "Mark Vega"
+  email: "mvega37@student.cnm.edu"
 
 # Do not change the following line.
   copyright: true

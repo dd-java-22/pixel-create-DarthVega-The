@@ -24,7 +24,7 @@ import dagger.hilt.android.HiltAndroidApp;
  * {@code AndroidManifest.xml}, or it will not be loaded and used by the Android system.
  */
 @HiltAndroidApp
-public class MyProjectApplication extends Application { // TODO Rename this class as aappropriate.
+public class PixelCreateApplication extends Application { // TODO Rename this class as aappropriate.
 
   @Override
   public void onCreate() {
