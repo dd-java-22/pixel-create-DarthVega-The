@@ -39,7 +39,7 @@ dependencyResolutionManagement {
     }
 }
 
-// TODO Change root project name.
-rootProject.name = "Pixel Create"
+
+rootProject.name = "pixel-create"
 
 include(":app")
