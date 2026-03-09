@@ -189,7 +189,7 @@ Only needed if we add:
 If we add:
 -  Google Analytics or similar tools.
 -  Firebase or similar tools.
-Permission: none required, but uses network access.
+Permission: not required, but uses network access.
 
 ### Device-Based-Services
 
