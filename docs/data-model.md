@@ -12,7 +12,7 @@ order: 10
 - ToC
 {:toc}
 
-## UML class diagram
+## UML Class Diagram
 
 [//]: # (TODO Use Markdown or Liquid include to show UML class diagram in SVG format, linking to PDF format. )
 
