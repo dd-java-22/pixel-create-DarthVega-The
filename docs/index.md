@@ -116,7 +116,7 @@ These settings personalize the experience across devices.
 ## Device/external services
 
 ### 📸 Camera Access
-   Required if you implement:
+   
 - Taking a photo to use as a reference layer
 - Capturing an image to pixelate
 - Any real‑time camera‑based pixelation feature
@@ -125,7 +125,7 @@ These settings personalize the experience across devices.
   This is the most significant device integration in your app.
 
 ### 📁 External Storage Access
-   Required if you allow:
+  
 - Exporting PNG files to the user’s gallery
 - Importing images from the device’s photo library
 - Loading reference images from Downloads or Pictures
@@ -136,7 +136,7 @@ These settings personalize the experience across devices.
   This is essential for any import/export workflow outside the app’s private storage.
 
 ### 👤 Notifications
-   Required only if you implement:
+  
 - Autosave notifications
 - Export‑complete notifications
 - Background processing alerts
@@ -144,7 +144,7 @@ These settings personalize the experience across devices.
   POST_NOTIFICATIONS
   This is optional but improves user experience.
 
-## Stretch goals and possible enhancements 
+## Stretch Goals and Possible Enhancements 
 
 ### 📸 Device Integration (Functionality Stretch Goal)
 These functions enhance creativity by connecting with device hardware and media.
@@ -174,11 +174,11 @@ If we add simple animation frames or collaboration, the server may maintain:
 - 	Collaboration logs — version history, contributors, and merge data.
 
 ### Vibration / Haptics (Persistence Stretch Goal)
-If you add tactile feedback for drawing tools or button presses.
-Permission: none required on modern Android, but uses the vibrator service.
+- For tactile feedback for drawing tools or button presses.
+- Permission: none required on modern Android, but uses the vibrator service.
 
 ### 🌐 Internet Access (Persistence Stretch Goal)
-Only needed if you add:
+Only needed if we add:
 - Cloud sync
 - Online gallery sharing
 - Remote backups
@@ -186,7 +186,70 @@ Only needed if you add:
   android.permission.INTERNET
 
 ### 📊 Analytics or Crash Reporting (Persistence Stretch Goal)
-If you add:
--  If you integrate Google Analytics or similar tools.
--  If you integrate Firebase or similar tools.
-Permission: none required, but uses network access.
+If we add:
+-  Google Analytics or similar tools.
+-  Firebase or similar tools.
+Permission: not required, but uses network access.
+
+### Device-Based-Services
+
+### MediaStore 
+Documentation: https://developer.android.com/training/data-storage/shared/media 
+
+How the app uses it:
+
+- Export PNG images to the user’s gallery
+
+- Save thumbnails for the project gallery
+
+- Import reference images from Photos/Downloads
+
+Does the app function without it: Yes, but exporting/importing images would be disabled.
+
+### SQLite / Room Database 
+Documentation: https://developer.android.com/training/data-storage/room 
+
+How the app uses it:
+
+- Store project metadata (name, size, timestamps)
+
+- Store pixel data and layer data
+
+- Store custom palettes
+
+- Store autosave snapshots
+
+Does the app function without it: No. Persistent project storage depends on it.
+
+### Camera Service 
+Documentation: https://developer.android.com/guide/topics/media/camera 
+
+How the app uses it:
+
+- Capture photos to use as reference layers
+
+- Capture images to convert into pixel art
+
+Does the app function without it: Yes, only camera‑based features would be unavailable.
+
+### Photo Picker / Storage Access 
+Documentation: https://developer.android.com/training/data-storage/shared/photopicker
+
+How the app uses it:
+
+- Import images from device storage
+
+- Load reference images
+
+Does the app function without it: Yes, but users cannot import external images.
+
+### Notification Service 
+Documentation: https://developer.android.com/develop/ui/views/notifications 
+
+How the app uses it:
+
+- Notify users of autosave events
+
+- Notify when export completes
+
+Does the app function without it: Yes. Notifications are optional.
