@@ -18,4 +18,5 @@ order: 10
 
 [![uml-class-diagram](img/first-draft-uml.png)](pdf/first-draft-uml.pdf)
 
+### WireFrame Diagram
 [![wireframe-diagram](img/first-draft-wireframe.svg)](pdf/first-draft-wireframe.pdf)
