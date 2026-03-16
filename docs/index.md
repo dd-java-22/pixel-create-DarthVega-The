@@ -21,21 +21,22 @@ Pixel Create is a mobile Android application designed to let users create retro-
 ### The Hobby Artist
 People who enjoy drawing casually and want a simple, relaxing creative outlet.
 Why they care:
-- Pixel art feels approachable and low‑pressure.
-- They want an easy way to doodle, experiment, and share creations.
-- They appreciate tools like undo/redo, zoom, and palettes that make drawing feel smooth.
+- Pixel art feels approachable and low‑pressure, it's an art form that is suitable for both beginners and experienced artists.
+- As an artist, I want an easy way to doodle, experiment, and share my creations.
+- Tools like undo/redo, zoom, and palettes make the drawing experience feel smooth and intuitive.
+- I want to be able to save my work and access it from any device, whether it's on my phone, tablet, or computer.
 ### Retro Game Enthusiasts
   Fans of classic games or people who want to create sprites for fun.
   Why they care:
-- Pixel art is nostalgic and tied to the games they love.
-- They may want to create characters, tiles, or icons.
-- Exporting at different resolutions is useful for sharing or using in small personal projects.
+- Pixel art was very prevalent in the games I grew up with, drawing pixel art fills me with nostalgia.
+- This app would be great for recreating my favorite retro game characters or developing my own pixel art sprites.
+- The ability to export at different resolutions would be fantastic for sharing art or using it in small personal projects.
 ### Indie Game Developers (Beginner Level)
   Students or hobbyists building small games who need simple sprite creation.
   Why they care:
-- They need a quick way to sketch ideas or build simple assets.
-- Layers, grids, and export resolution matter for game integration.
-- A gallery helps them manage multiple assets.
+- Pixel art is a quick way to sketch ideas or build simple assets for a game.
+- As an indie developer, features like layering, grids, and export resolution are essential for game integration.
+- An art gallery would help me manage multiple assets such as characters, tiles, and icons.
 
 ## Functionality
 

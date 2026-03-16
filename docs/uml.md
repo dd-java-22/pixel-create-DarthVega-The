@@ -1,0 +1,225 @@
+---
+title: UML Class Diagram
+description: "UML class diagram"
+order: 10
+---
+## UML Class Diagram
+
+```mermaid
+classDiagram
+    direction LR
+
+    class User {
+        -long id
+        -String username
+        -String email
+        -String authToken
+        -int defaultCanvasWidth
+        -int defaultCanvasHeight
+        -String themePreference
+        -boolean gridVisibility
+        -float zoomSensitivity
+        -Instant createdAt
+        -Instant lastLogin
+        +long getId()
+        +void setId(long id)
+        +String getUsername()
+        +void setUsername(String username)
+        +String getEmail()
+        +void setEmail(String email)
+        +String getAuthToken()
+        +void setAuthToken(String authToken)
+        +int getDefaultCanvasWidth()
+        +void setDefaultCanvasWidth(int defaultCanvasWidth)
+        +int getDefaultCanvasHeight()
+        +void setDefaultCanvasHeight(int defaultCanvasHeight)
+        +String getThemePreference()
+        +void setThemePreference(String themePreference)
+        +boolean isGridVisibility()
+        +void setGridVisibility(boolean gridVisibility)
+        +float getZoomSensitivity()
+        +void setZoomSensitivity(float zoomSensitivity)
+        +Instant getCreatedAt()
+        +void setCreatedAt(Instant createdAt)
+        +Instant getLastLogin()
+        +void setLastLogin(Instant lastLogin)
+    }
+
+    class Project {
+        -long id
+        -long userId
+        -String projectName
+        -int canvasWidth
+        -int canvasHeight
+        -Instant createdAt
+        -Instant lastEditedAt
+        -byte[] thumbnailImage
+        -boolean isDeleted
+        -String tags
+        +long getId()
+        +void setId(long id)
+        +long getUserId()
+        +void setUserId(long userId)
+        +String getProjectName()
+        +void setProjectName(String projectName)
+        +int getCanvasWidth()
+        +void setCanvasWidth(int canvasWidth)
+        +int getCanvasHeight()
+        +void setCanvasHeight(int canvasHeight)
+        +Instant getCreatedAt()
+        +void setCreatedAt(Instant createdAt)
+        +Instant getLastEditedAt()
+        +void setLastEditedAt(Instant lastEditedAt)
+        +byte[] getThumbnailImage()
+        +void setThumbnailImage(byte[] thumbnailImage)
+        +boolean isDeleted()
+        +void setDeleted(boolean deleted)
+        +String getTags()
+        +void setTags(String tags)
+    }
+
+    class Layer {
+        -long id
+        -long projectId
+        -String layerName
+        -int layerOrder
+        -boolean isVisible
+        -boolean isLocked
+        -float opacity
+        -Instant createdAt
+        +long getId()
+        +void setId(long id)
+        +long getProjectId()
+        +void setProjectId(long projectId)
+        +String getLayerName()
+        +void setLayerName(String layerName)
+        +int getLayerOrder()
+        +void setLayerOrder(int layerOrder)
+        +boolean isVisible()
+        +void setVisible(boolean visible)
+        +boolean isLocked()
+        +void setLocked(boolean locked)
+        +float getOpacity()
+        +void setOpacity(float opacity)
+        +Instant getCreatedAt()
+        +void setCreatedAt(Instant createdAt)
+    }
+
+    class Pixel {
+        -long id
+        -long layerId
+        -int xCoordinate
+        -int yCoordinate
+        -int colorValue
+        -Instant lastModified
+        +long getId()
+        +void setId(long id)
+        +long getLayerId()
+        +void setLayerId(long layerId)
+        +int getXCoordinate()
+        +void setXCoordinate(int xCoordinate)
+        +int getYCoordinate()
+        +void setYCoordinate(int yCoordinate)
+        +int getColorValue()
+        +void setColorValue(int colorValue)
+        +Instant getLastModified()
+        +void setLastModified(Instant lastModified)
+    }
+
+    class Palette {
+        -long id
+        -long userId
+        -String paletteName
+        -boolean isDefault
+        -Instant createdAt
+        -Instant lastUsed
+        +long getId()
+        +void setId(long id)
+        +long getUserId()
+        +void setUserId(long userId)
+        +String getPaletteName()
+        +void setPaletteName(String paletteName)
+        +boolean isDefault()
+        +void setDefault(boolean isDefault)
+        +Instant getCreatedAt()
+        +void setCreatedAt(Instant createdAt)
+        +Instant getLastUsed()
+        +void setLastUsed(Instant lastUsed)
+    }
+
+    class PaletteColor {
+        -long id
+        -long paletteId
+        -int colorValue
+        -int colorOrder
+        -String colorName
+        +long getId()
+        +void setId(long id)
+        +long getPaletteId()
+        +void setPaletteId(long paletteId)
+        +int getColorValue()
+        +void setColorValue(int colorValue)
+        +int getColorOrder()
+        +void setColorOrder(int colorOrder)
+        +String getColorName()
+        +void setColorName(String colorName)
+    }
+
+    class ExportHistory {
+        -long id
+        -long projectId
+        -String fileName
+        -String filePath
+        -String fileFormat
+        -int resolution
+        -int scaleFactor
+        -Instant exportedAt
+        -int fileSizeBytes
+        +long getId()
+        +void setId(long id)
+        +long getProjectId()
+        +void setProjectId(long projectId)
+        +String getFileName()
+        +void setFileName(String fileName)
+        +String getFilePath()
+        +void setFilePath(String filePath)
+        +String getFileFormat()
+        +void setFileFormat(String fileFormat)
+        +int getResolution()
+        +void setResolution(int resolution)
+        +int getScaleFactor()
+        +void setScaleFactor(int scaleFactor)
+        +Instant getExportedAt()
+        +void setExportedAt(Instant exportedAt)
+        +int getFileSizeBytes()
+        +void setFileSizeBytes(int fileSizeBytes)
+    }
+
+    class AutosaveSnapshot {
+        -long id
+        -long projectId
+        -byte[] snapshotData
+        -Instant createdAt
+        -int fileSize
+        +long getId()
+        +void setId(long id)
+        +long getProjectId()
+        +void setProjectId(long projectId)
+        +byte[] getSnapshotData()
+        +void setSnapshotData(byte[] snapshotData)
+        +Instant getCreatedAt()
+        +void setCreatedAt(Instant createdAt)
+        +int getFileSize()
+        +void setFileSize(int fileSize)
+    }
+
+    User "1" --> "0..*" Project : has
+    User "1" --> "0..*" Palette : has
+    Project "1" --> "1..*" Layer : has
+    Project "1" --> "0..*" ExportHistory : has
+    Project "1" --> "0..*" AutosaveSnapshot : has
+    Layer "1" --> "0..*" Pixel : contains
+    Palette "1" --> "0..*" PaletteColor : has
+```
+
+[![uml-class-diagram](img/uml-class-diagram.svg)](img/uml-class-diagram.svg)

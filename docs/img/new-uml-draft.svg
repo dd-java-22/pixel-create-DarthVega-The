@@ -1,0 +1,648 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="3600" viewBox="0 0 1400 3600">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,3 L0,6 z" fill="#333" />
+    </marker>
+    <style>
+      .class-box { fill:#f9f9f9; stroke:#333; stroke-width:1.5; }
+      .class-title { font-family: monospace; font-size:16px; font-weight:bold; }
+      .class-section { font-family: monospace; font-size:12px; }
+      .rel-line { stroke:#333; stroke-width:1.5; }
+      .rel-label { font-family: monospace; font-size:12px; fill:#333; }
+    </style>
+  </defs>
+
+  <!-- User -->
+  <g id="User" transform="translate(50,40)">
+    <rect class="class-box" x="0" y="0" width="600" height="420" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">User</text>
+    <line x1="0" y1="30" x2="600" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - String username
+    </text>
+    <text class="class-section" x="10" y="80">
+      - String email
+    </text>
+    <text class="class-section" x="10" y="95">
+      - String authToken
+    </text>
+    <text class="class-section" x="10" y="110">
+      - int defaultCanvasWidth
+    </text>
+    <text class="class-section" x="10" y="125">
+      - int defaultCanvasHeight
+    </text>
+    <text class="class-section" x="10" y="140">
+      - String themePreference
+    </text>
+    <text class="class-section" x="10" y="155">
+      - boolean gridVisibility
+    </text>
+    <text class="class-section" x="10" y="170">
+      - float zoomSensitivity
+    </text>
+    <text class="class-section" x="10" y="185">
+      - Instant createdAt
+    </text>
+    <text class="class-section" x="10" y="200">
+      - Instant lastLogin
+    </text>
+    <line x1="0" y1="215" x2="600" y2="215" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="235">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="250">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="265">
+      + String getUsername()
+    </text>
+    <text class="class-section" x="10" y="280">
+      + void setUsername(String username)
+    </text>
+    <text class="class-section" x="10" y="295">
+      + String getEmail()
+    </text>
+    <text class="class-section" x="10" y="310">
+      + void setEmail(String email)
+    </text>
+    <text class="class-section" x="10" y="325">
+      + String getAuthToken()
+    </text>
+    <text class="class-section" x="10" y="340">
+      + void setAuthToken(String authToken)
+    </text>
+    <text class="class-section" x="10" y="355">
+      + int getDefaultCanvasWidth()
+    </text>
+    <text class="class-section" x="10" y="370">
+      + void setDefaultCanvasWidth(int defaultCanvasWidth)
+    </text>
+    <text class="class-section" x="10" y="385">
+      + int getDefaultCanvasHeight()
+    </text>
+    <text class="class-section" x="10" y="400">
+      + void setDefaultCanvasHeight(int defaultCanvasHeight)
+    </text>
+    <text class="class-section" x="310" y="235">
+      + String getThemePreference()
+    </text>
+    <text class="class-section" x="310" y="250">
+      + void setThemePreference(String themePreference)
+    </text>
+    <text class="class-section" x="310" y="265">
+      + boolean isGridVisibility()
+    </text>
+    <text class="class-section" x="310" y="280">
+      + void setGridVisibility(boolean gridVisibility)
+    </text>
+    <text class="class-section" x="310" y="295">
+      + float getZoomSensitivity()
+    </text>
+    <text class="class-section" x="310" y="310">
+      + void setZoomSensitivity(float zoomSensitivity)
+    </text>
+    <text class="class-section" x="310" y="325">
+      + Instant getCreatedAt()
+    </text>
+    <text class="class-section" x="310" y="340">
+      + void setCreatedAt(Instant createdAt)
+    </text>
+    <text class="class-section" x="310" y="355">
+      + Instant getLastLogin()
+    </text>
+    <text class="class-section" x="310" y="370">
+      + void setLastLogin(Instant lastLogin)
+    </text>
+  </g>
+
+  <!-- Project -->
+  <g id="Project" transform="translate(50,520)">
+    <rect class="class-box" x="0" y="0" width="600" height="420" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">Project</text>
+    <line x1="0" y1="30" x2="600" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - long userId
+    </text>
+    <text class="class-section" x="10" y="80">
+      - String projectName
+    </text>
+    <text class="class-section" x="10" y="95">
+      - int canvasWidth
+    </text>
+    <text class="class-section" x="10" y="110">
+      - int canvasHeight
+    </text>
+    <text class="class-section" x="10" y="125">
+      - Instant createdAt
+    </text>
+    <text class="class-section" x="10" y="140">
+      - Instant lastEditedAt
+    </text>
+    <text class="class-section" x="10" y="155">
+      - byte[] thumbnailImage
+    </text>
+    <text class="class-section" x="10" y="170">
+      - boolean isDeleted
+    </text>
+    <text class="class-section" x="10" y="185">
+      - String tags
+    </text>
+    <line x1="0" y1="205" x2="600" y2="205" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="225">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="240">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="255">
+      + long getUserId()
+    </text>
+    <text class="class-section" x="10" y="270">
+      + void setUserId(long userId)
+    </text>
+    <text class="class-section" x="10" y="285">
+      + String getProjectName()
+    </text>
+    <text class="class-section" x="10" y="300">
+      + void setProjectName(String projectName)
+    </text>
+    <text class="class-section" x="10" y="315">
+      + int getCanvasWidth()
+    </text>
+    <text class="class-section" x="10" y="330">
+      + void setCanvasWidth(int canvasWidth)
+    </text>
+    <text class="class-section" x="10" y="345">
+      + int getCanvasHeight()
+    </text>
+    <text class="class-section" x="10" y="360">
+      + void setCanvasHeight(int canvasHeight)
+    </text>
+    <text class="class-section" x="310" y="225">
+      + Instant getCreatedAt()
+    </text>
+    <text class="class-section" x="310" y="240">
+      + void setCreatedAt(Instant createdAt)
+    </text>
+    <text class="class-section" x="310" y="255">
+      + Instant getLastEditedAt()
+    </text>
+    <text class="class-section" x="310" y="270">
+      + void setLastEditedAt(Instant lastEditedAt)
+    </text>
+    <text class="class-section" x="310" y="285">
+      + byte[] getThumbnailImage()
+    </text>
+    <text class="class-section" x="310" y="300">
+      + void setThumbnailImage(byte[] thumbnailImage)
+    </text>
+    <text class="class-section" x="310" y="315">
+      + boolean isDeleted()
+    </text>
+    <text class="class-section" x="310" y="330">
+      + void setDeleted(boolean deleted)
+    </text>
+    <text class="class-section" x="310" y="345">
+      + String getTags()
+    </text>
+    <text class="class-section" x="310" y="360">
+      + void setTags(String tags)
+    </text>
+  </g>
+
+  <!-- Layer -->
+  <g id="Layer" transform="translate(50,1000)">
+    <rect class="class-box" x="0" y="0" width="600" height="320" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">Layer</text>
+    <line x1="0" y1="30" x2="600" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - long projectId
+    </text>
+    <text class="class-section" x="10" y="80">
+      - String layerName
+    </text>
+    <text class="class-section" x="10" y="95">
+      - int layerOrder
+    </text>
+    <text class="class-section" x="10" y="110">
+      - boolean isVisible
+    </text>
+    <text class="class-section" x="10" y="125">
+      - boolean isLocked
+    </text>
+    <text class="class-section" x="10" y="140">
+      - float opacity
+    </text>
+    <text class="class-section" x="10" y="155">
+      - Instant createdAt
+    </text>
+    <line x1="0" y1="175" x2="600" y2="175" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="195">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="210">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="225">
+      + long getProjectId()
+    </text>
+    <text class="class-section" x="10" y="240">
+      + void setProjectId(long projectId)
+    </text>
+    <text class="class-section" x="10" y="255">
+      + String getLayerName()
+    </text>
+    <text class="class-section" x="10" y="270">
+      + void setLayerName(String layerName)
+    </text>
+    <text class="class-section" x="310" y="195">
+      + int getLayerOrder()
+    </text>
+    <text class="class-section" x="310" y="210">
+      + void setLayerOrder(int layerOrder)
+    </text>
+    <text class="class-section" x="310" y="225">
+      + boolean isVisible()
+    </text>
+    <text class="class-section" x="310" y="240">
+      + void setVisible(boolean visible)
+    </text>
+    <text class="class-section" x="310" y="255">
+      + boolean isLocked()
+    </text>
+    <text class="class-section" x="310" y="270">
+      + void setLocked(boolean locked)
+    </text>
+    <text class="class-section" x="310" y="285">
+      + float getOpacity()
+    </text>
+    <text class="class-section" x="310" y="300">
+      + void setOpacity(float opacity)
+    </text>
+    <text class="class-section" x="310" y="315">
+      + Instant getCreatedAt()
+    </text>
+    <text class="class-section" x="310" y="330">
+      + void setCreatedAt(Instant createdAt)
+    </text>
+  </g>
+
+  <!-- Pixel -->
+  <g id="Pixel" transform="translate(50,1400)">
+    <rect class="class-box" x="0" y="0" width="600" height="320" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">Pixel</text>
+    <line x1="0" y1="30" x2="600" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - long layerId
+    </text>
+    <text class="class-section" x="10" y="80">
+      - int xCoordinate
+    </text>
+    <text class="class-section" x="10" y="95">
+      - int yCoordinate
+    </text>
+    <text class="class-section" x="10" y="110">
+      - int colorValue
+    </text>
+    <text class="class-section" x="10" y="125">
+      - Instant lastModified
+    </text>
+    <line x1="0" y1="145" x2="600" y2="145" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="165">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="180">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="195">
+      + long getLayerId()
+    </text>
+    <text class="class-section" x="10" y="210">
+      + void setLayerId(long layerId)
+    </text>
+    <text class="class-section" x="10" y="225">
+      + int getXCoordinate()
+    </text>
+    <text class="class-section" x="10" y="240">
+      + void setXCoordinate(int xCoordinate)
+    </text>
+    <text class="class-section" x="10" y="255">
+      + int getYCoordinate()
+    </text>
+    <text class="class-section" x="10" y="270">
+      + void setYCoordinate(int yCoordinate)
+    </text>
+    <text class="class-section" x="310" y="165">
+      + int getColorValue()
+    </text>
+    <text class="class-section" x="310" y="180">
+      + void setColorValue(int colorValue)
+    </text>
+    <text class="class-section" x="310" y="195">
+      + Instant getLastModified()
+    </text>
+    <text class="class-section" x="310" y="210">
+      + void setLastModified(Instant lastModified)
+    </text>
+  </g>
+
+  <!-- Palette -->
+  <g id="Palette" transform="translate(50,1800)">
+    <rect class="class-box" x="0" y="0" width="600" height="320" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">Palette</text>
+    <line x1="0" y1="30" x2="600" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - long userId
+    </text>
+    <text class="class-section" x="10" y="80">
+      - String paletteName
+    </text>
+    <text class="class-section" x="10" y="95">
+      - boolean isDefault
+    </text>
+    <text class="class-section" x="10" y="110">
+      - Instant createdAt
+    </text>
+    <text class="class-section" x="10" y="125">
+      - Instant lastUsed
+    </text>
+    <line x1="0" y1="145" x2="600" y2="145" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="165">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="180">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="195">
+      + long getUserId()
+    </text>
+    <text class="class-section" x="10" y="210">
+      + void setUserId(long userId)
+    </text>
+    <text class="class-section" x="10" y="225">
+      + String getPaletteName()
+    </text>
+    <text class="class-section" x="10" y="240">
+      + void setPaletteName(String paletteName)
+    </text>
+    <text class="class-section" x="310" y="165">
+      + boolean isDefault()
+    </text>
+    <text class="class-section" x="310" y="180">
+      + void setDefault(boolean isDefault)
+    </text>
+    <text class="class-section" x="310" y="195">
+      + Instant getCreatedAt()
+    </text>
+    <text class="class-section" x="310" y="210">
+      + void setCreatedAt(Instant createdAt)
+    </text>
+    <text class="class-section" x="310" y="225">
+      + Instant getLastUsed()
+    </text>
+    <text class="class-section" x="310" y="240">
+      + void setLastUsed(Instant lastUsed)
+    </text>
+  </g>
+
+  <!-- PaletteColor -->
+  <g id="PaletteColor" transform="translate(50,2200)">
+    <rect class="class-box" x="0" y="0" width="600" height="260" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">PaletteColor</text>
+    <line x1="0" y1="30" x2="600" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - long paletteId
+    </text>
+    <text class="class-section" x="10" y="80">
+      - int colorValue
+    </text>
+    <text class="class-section" x="10" y="95">
+      - int colorOrder
+    </text>
+    <text class="class-section" x="10" y="110">
+      - String colorName
+    </text>
+    <line x1="0" y1="130" x2="600" y2="130" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="150">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="165">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="180">
+      + long getPaletteId()
+    </text>
+    <text class="class-section" x="10" y="195">
+      + void setPaletteId(long paletteId)
+    </text>
+    <text class="class-section" x="10" y="210">
+      + int getColorValue()
+    </text>
+    <text class="class-section" x="10" y="225">
+      + void setColorValue(int colorValue)
+    </text>
+    <text class="class-section" x="310" y="150">
+      + int getColorOrder()
+    </text>
+    <text class="class-section" x="310" y="165">
+      + void setColorOrder(int colorOrder)
+    </text>
+    <text class="class-section" x="310" y="180">
+      + String getColorName()
+    </text>
+    <text class="class-section" x="310" y="195">
+      + void setColorName(String colorName)
+    </text>
+  </g>
+
+  <!-- ExportHistory -->
+  <g id="ExportHistory" transform="translate(50,2600)">
+    <rect class="class-box" x="0" y="0" width="650" height="360" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">ExportHistory</text>
+    <line x1="0" y1="30" x2="650" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - long projectId
+    </text>
+    <text class="class-section" x="10" y="80">
+      - String fileName
+    </text>
+    <text class="class-section" x="10" y="95">
+      - String filePath
+    </text>
+    <text class="class-section" x="10" y="110">
+      - String fileFormat
+    </text>
+    <text class="class-section" x="10" y="125">
+      - int resolution
+    </text>
+    <text class="class-section" x="10" y="140">
+      - int scaleFactor
+    </text>
+    <text class="class-section" x="10" y="155">
+      - Instant exportedAt
+    </text>
+    <text class="class-section" x="10" y="170">
+      - int fileSizeBytes
+    </text>
+    <line x1="0" y1="190" x2="650" y2="190" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="210">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="225">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="240">
+      + long getProjectId()
+    </text>
+    <text class="class-section" x="10" y="255">
+      + void setProjectId(long projectId)
+    </text>
+    <text class="class-section" x="10" y="270">
+      + String getFileName()
+    </text>
+    <text class="class-section" x="10" y="285">
+      + void setFileName(String fileName)
+    </text>
+    <text class="class-section" x="10" y="300">
+      + String getFilePath()
+    </text>
+    <text class="class-section" x="10" y="315">
+      + void setFilePath(String filePath)
+    </text>
+    <text class="class-section" x="330" y="210">
+      + String getFileFormat()
+    </text>
+    <text class="class-section" x="330" y="225">
+      + void setFileFormat(String fileFormat)
+    </text>
+    <text class="class-section" x="330" y="240">
+      + int getResolution()
+    </text>
+    <text class="class-section" x="330" y="255">
+      + void setResolution(int resolution)
+    </text>
+    <text class="class-section" x="330" y="270">
+      + int getScaleFactor()
+    </text>
+    <text class="class-section" x="330" y="285">
+      + void setScaleFactor(int scaleFactor)
+    </text>
+    <text class="class-section" x="330" y="300">
+      + Instant getExportedAt()
+    </text>
+    <text class="class-section" x="330" y="315">
+      + void setExportedAt(Instant exportedAt)
+    </text>
+    <text class="class-section" x="330" y="330">
+      + int getFileSizeBytes()
+    </text>
+    <text class="class-section" x="330" y="345">
+      + void setFileSizeBytes(int fileSizeBytes)
+    </text>
+  </g>
+
+  <!-- AutosaveSnapshot -->
+  <g id="AutosaveSnapshot" transform="translate(50,3050)">
+    <rect class="class-box" x="0" y="0" width="650" height="260" rx="6" ry="6" />
+    <text class="class-title" x="10" y="20">AutosaveSnapshot</text>
+    <line x1="0" y1="30" x2="650" y2="30" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="50">
+      - long id
+    </text>
+    <text class="class-section" x="10" y="65">
+      - long projectId
+    </text>
+    <text class="class-section" x="10" y="80">
+      - byte[] snapshotData
+    </text>
+    <text class="class-section" x="10" y="95">
+      - Instant createdAt
+    </text>
+    <text class="class-section" x="10" y="110">
+      - int fileSize
+    </text>
+    <line x1="0" y1="130" x2="650" y2="130" stroke="#333" stroke-width="1" />
+    <text class="class-section" x="10" y="150">
+      + long getId()
+    </text>
+    <text class="class-section" x="10" y="165">
+      + void setId(long id)
+    </text>
+    <text class="class-section" x="10" y="180">
+      + long getProjectId()
+    </text>
+    <text class="class-section" x="10" y="195">
+      + void setProjectId(long projectId)
+    </text>
+    <text class="class-section" x="10" y="210">
+      + byte[] getSnapshotData()
+    </text>
+    <text class="class-section" x="10" y="225">
+      + void setSnapshotData(byte[] snapshotData)
+    </text>
+    <text class="class-section" x="330" y="150">
+      + Instant getCreatedAt()
+    </text>
+    <text class="class-section" x="330" y="165">
+      + void setCreatedAt(Instant createdAt)
+    </text>
+    <text class="class-section" x="330" y="180">
+      + int getFileSize()
+    </text>
+    <text class="class-section" x="330" y="195">
+      + void setFileSize(int fileSize)
+    </text>
+  </g>
+
+  <!-- Relationships -->
+
+  <!-- User "1" --> "0..*" Project : has -->
+  <line class="rel-line" x1="350" y1="460" x2="350" y2="520" marker-end="url(#arrow)" />
+  <text class="rel-label" x="360" y="490">1 .. 0..* has</text>
+
+  <!-- User "1" --> "0..*" Palette : has -->
+  <line class="rel-line" x1="400" y1="460" x2="400" y2="1800" marker-end="url(#arrow)" />
+  <text class="rel-label" x="410" y="1120">1 .. 0..* has</text>
+
+  <!-- Project "1" --> "1..*" Layer : has -->
+  <line class="rel-line" x1="300" y1="940" x2="300" y2="1000" marker-end="url(#arrow)" />
+  <text class="rel-label" x="310" y="970">1 .. 1..* has</text>
+
+  <!-- Project "1" --> "0..*" ExportHistory : has -->
+  <line class="rel-line" x1="450" y1="940" x2="450" y2="2600" marker-end="url(#arrow)" />
+  <text class="rel-label" x="460" y="1800">1 .. 0..* has</text>
+
+  <!-- Project "1" --> "0..*" AutosaveSnapshot : has -->
+  <line class="rel-line" x1="500" y1="940" x2="500" y2="3050" marker-end="url(#arrow)" />
+  <text class="rel-label" x="510" y="2000">1 .. 0..* has</text>
+
+  <!-- Layer "1" --> "0..*" Pixel : contains -->
+  <line class="rel-line" x1="250" y1="1320" x2="250" y2="1400" marker-end="url(#arrow)" />
+  <text class="rel-label" x="260" y="1360">1 .. 0..* contains</text>
+
+  <!-- Palette "1" --> "0..*" PaletteColor : has -->
+  <line class="rel-line" x1="350" y1="2120" x2="350" y2="2200" marker-end="url(#arrow)" />
+  <text class="rel-label" x="360" y="2160">1 .. 0..* has</text>
+</svg>
