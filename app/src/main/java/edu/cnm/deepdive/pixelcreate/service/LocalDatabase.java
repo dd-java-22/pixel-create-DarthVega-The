@@ -54,7 +54,7 @@ import java.time.Instant;
         AutosaveSnapshot.class,
         ExportHistory.class
     },
-    version = 1
+    version = LocalDatabase.DATABASE_VERSION
 )
 @TypeConverters(Converters.class)
 public abstract class LocalDatabase extends RoomDatabase {
