@@ -295,3 +295,6 @@ If collaboration features are added:
 - **ProjectCollaborator** junction table (User-Project many-to-many)
 - **VersionHistory** entity for tracking changes and merges
 
+---
+
+[![erd-diagram](img/erd-diagram.svg)](img/erd-diagram.svg)
