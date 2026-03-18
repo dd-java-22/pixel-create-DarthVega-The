@@ -384,4 +384,26 @@ If collaboration features are added:
 
 ---
 
+## Entity Source Code
+
+The following entity classes implement this ERD schema in Java using Room Database annotations. Click each link to view the source code on GitHub:
+
+### Core Entities
+- [**User.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/User.java) - User account and preferences
+- [**Project.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/Project.java) - Pixel art project metadata
+- [**Layer.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/Layer.java) - Drawing layer within a project
+- [**Pixel.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/Pixel.java) - Individual pixel data
+
+### Color Management
+- [**Palette.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/Palette.java) - Color palette collection
+- [**PaletteColor.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/PaletteColor.java) - Individual palette color
+
+### Data Persistence & History
+- [**AutosaveSnapshot.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/AutosaveSnapshot.java) - Project backup snapshot
+- [**ExportHistory.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/ExportHistory.java) - Export operation record
+
+For detailed descriptions and a complete overview of all entity classes, see the [Entity Classes](entities.md) page.
+
+---
+
 

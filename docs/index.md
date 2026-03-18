@@ -77,8 +77,10 @@ These functions create a dynamic, user‑friendly home screen.
 
 ## Persistent data
 
+All persistent data is managed using Room Database with entity classes that represent the database schema. For complete entity class documentation and source code links, see the [Entity Classes](entities.md) page. For visual representations, see the [Entity-Relationship Diagram](erd.md) and [UML Class Diagram](uml.md).
+
 ### 📁 Core Project Data
-This is the essential information needed to reconstruct a user’s artwork on any device.
+This is the essential information needed to reconstruct a user's artwork on any device.
 - Project metadata — project name, canvas size, creation date, last edited timestamp.
 - Pixel data — the color value of each pixel in the canvas.
 - Layer data — layer order, visibility, opacity, and pixel assignments per layer.
