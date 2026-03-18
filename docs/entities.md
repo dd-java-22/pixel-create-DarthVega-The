@@ -51,12 +51,41 @@ For detailed cardinality information and relationship constraints, see the [ERD 
 
 ---
 
+## Data Access Object (DAO) Interfaces
+
+Each entity has a corresponding DAO interface that provides database operations (CRUD - Create, Read, Update, Delete). These interfaces are implemented by Room Database at compile time.
+
+### Core Entity DAOs
+
+| DAO Interface | Description | Source Code |
+|---------------|-------------|-------------|
+| **UserDao** | Data access operations for User entity. Provides methods to insert, update, delete users, and query by ID, username, or email. Returns LiveData for reactive UI updates. | [UserDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/UserDao.java) |
+| **ProjectDao** | Data access operations for Project entity. Manages project CRUD operations, queries projects by user, and supports filtering by deletion status. | [ProjectDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/ProjectDao.java) |
+| **LayerDao** | Data access operations for Layer entity. Handles layer management within projects, including ordering, visibility, and lock state queries. | [LayerDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/LayerDao.java) |
+| **PixelDao** | Data access operations for Pixel entity. Manages individual pixel data with queries by layer, coordinate, and bulk operations for efficient canvas rendering. | [PixelDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/PixelDao.java) |
+
+### Color Management DAOs
+
+| DAO Interface | Description | Source Code |
+|---------------|-------------|-------------|
+| **PaletteDao** | Data access operations for Palette entity. Manages custom palette collections, queries by user, and tracks recently used palettes. | [PaletteDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/PaletteDao.java) |
+| **PaletteColorDao** | Data access operations for PaletteColor entity. Handles individual colors within palettes, including ordering and color lookup operations. | [PaletteColorDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/PaletteColorDao.java) |
+
+### Data Persistence & History DAOs
+
+| DAO Interface | Description | Source Code |
+|---------------|-------------|-------------|
+| **AutosaveSnapshotDao** | Data access operations for AutosaveSnapshot entity. Manages project backup snapshots with retention policy support and timestamp-based queries. | [AutosaveSnapshotDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/AutosaveSnapshotDao.java) |
+| **ExportHistoryDao** | Data access operations for ExportHistory entity. Tracks export operations with queries by project, format, and date range for export analytics. | [ExportHistoryDao.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/ExportHistoryDao.java) |
+
+---
+
 ## Database Implementation
 
-These entities are managed by the Room Database framework. For more information:
+These entities and DAOs are managed by the Room Database framework. For more information:
 
 - **Database Schema**: See [SQL DDL](ddl.md) for complete table definitions
-- **Data Access Objects**: Each entity has a corresponding DAO interface in `edu.cnm.deepdive.pixelcreate.model.dao`
+- **Database Class**: The `LocalDatabase` class coordinates all DAOs and entities
 - **Type Converters**: The `LocalDatabase.Converters` class handles conversion of `Instant` timestamps to SQLite-compatible types
 
 ---

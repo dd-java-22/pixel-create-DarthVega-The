@@ -404,6 +404,24 @@ The following entity classes implement this ERD schema in Java using Room Databa
 
 For detailed descriptions and a complete overview of all entity classes, see the [Entity Classes](entities.md) page.
 
+## DAO Interface Source Code
+
+Each entity has a corresponding Data Access Object (DAO) interface that provides CRUD operations and custom queries. Click each link to view the source code on GitHub:
+
+### Core Entity DAOs
+- [**UserDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/UserDao.java) - User data access operations
+- [**ProjectDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/ProjectDao.java) - Project data access operations
+- [**LayerDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/LayerDao.java) - Layer data access operations
+- [**PixelDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/PixelDao.java) - Pixel data access operations
+
+### Color Management DAOs
+- [**PaletteDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/PaletteDao.java) - Palette data access operations
+- [**PaletteColorDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/PaletteColorDao.java) - Palette color data access operations
+
+### Data Persistence & History DAOs
+- [**AutosaveSnapshotDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/AutosaveSnapshotDao.java) - Autosave snapshot data access operations
+- [**ExportHistoryDao.java**](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/dao/ExportHistoryDao.java) - Export history data access operations
+
 ---
 
 
