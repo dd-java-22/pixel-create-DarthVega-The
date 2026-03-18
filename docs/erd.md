@@ -8,100 +8,187 @@ order: 11
 
 This ERD represents the database structure for the Pixel Create pixel art application, designed to support local persistence using Room Database with potential for cloud synchronization.
 
-```mermaid
-erDiagram
-    User ||--o{ Project : creates
-    User ||--o{ Palette : creates
-    Project ||--|{ Layer : contains
-    Layer ||--o{ Pixel : contains
-    Project ||--o{ AutosaveSnapshot : has
-    Project ||--o{ ExportHistory : generates
-    Palette ||--|{ PaletteColor : contains
+[![updated-erd-diagram](img/updated-erd-diagram.svg)](pdf/updated-erd-diagram.pdf)
 
-    User {
-        int userId PK
-        string username
-        string email
-        string authToken
-        int defaultCanvasWidth
-        int defaultCanvasHeight
-        string themePreference
-        boolean gridVisibility
-        float zoomSensitivity
-        timestamp createdAt
-        timestamp lastLogin
-    }
+[//]: # (```mermaid)
 
-    Project {
-        int projectId PK
-        int userId FK
-        string projectName
-        int canvasWidth
-        int canvasHeight
-        timestamp createdAt
-        timestamp lastEditedAt
-        blob thumbnailImage
-        boolean isDeleted
-        string tags
-    }
+[//]: # (erDiagram)
 
-    Layer {
-        int layerId PK
-        int projectId FK
-        string layerName
-        int layerOrder
-        boolean isVisible
-        boolean isLocked
-        float opacity
-        timestamp createdAt
-    }
+[//]: # (    User ||--o{ Project : creates)
 
-    Pixel {
-        int pixelId PK
-        int layerId FK
-        int xCoordinate
-        int yCoordinate
-        int colorValue
-        timestamp lastModified
-    }
+[//]: # (    User ||--o{ Palette : creates)
 
-    Palette {
-        int paletteId PK
-        int userId FK
-        string paletteName
-        boolean isDefault
-        timestamp createdAt
-        timestamp lastUsed
-    }
+[//]: # (    Project ||--|{ Layer : contains)
 
-    PaletteColor {
-        int colorId PK
-        int paletteId FK
-        int colorValue
-        int colorOrder
-        string colorName
-    }
+[//]: # (    Layer ||--o{ Pixel : contains)
 
-    AutosaveSnapshot {
-        int snapshotId PK
-        int projectId FK
-        blob snapshotData
-        timestamp createdAt
-        int fileSize
-    }
+[//]: # (    Project ||--o{ AutosaveSnapshot : has)
 
-    ExportHistory {
-        int exportId PK
-        int projectId FK
-        string fileName
-        string filePath
-        string fileFormat
-        int resolution
-        int scaleFactor
-        timestamp exportedAt
-        int fileSizeBytes
-    }
-```
+[//]: # (    Project ||--o{ ExportHistory : generates)
+
+[//]: # (    Palette ||--|{ PaletteColor : contains)
+
+[//]: # ()
+[//]: # (    User {)
+
+[//]: # (        int userId PK)
+
+[//]: # (        string username)
+
+[//]: # (        string email)
+
+[//]: # (        string authToken)
+
+[//]: # (        int defaultCanvasWidth)
+
+[//]: # (        int defaultCanvasHeight)
+
+[//]: # (        string themePreference)
+
+[//]: # (        boolean gridVisibility)
+
+[//]: # (        float zoomSensitivity)
+
+[//]: # (        timestamp createdAt)
+
+[//]: # (        timestamp lastLogin)
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    Project {)
+
+[//]: # (        int projectId PK)
+
+[//]: # (        int userId FK)
+
+[//]: # (        string projectName)
+
+[//]: # (        int canvasWidth)
+
+[//]: # (        int canvasHeight)
+
+[//]: # (        timestamp createdAt)
+
+[//]: # (        timestamp lastEditedAt)
+
+[//]: # (        blob thumbnailImage)
+
+[//]: # (        boolean isDeleted)
+
+[//]: # (        string tags)
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    Layer {)
+
+[//]: # (        int layerId PK)
+
+[//]: # (        int projectId FK)
+
+[//]: # (        string layerName)
+
+[//]: # (        int layerOrder)
+
+[//]: # (        boolean isVisible)
+
+[//]: # (        boolean isLocked)
+
+[//]: # (        float opacity)
+
+[//]: # (        timestamp createdAt)
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    Pixel {)
+
+[//]: # (        int pixelId PK)
+
+[//]: # (        int layerId FK)
+
+[//]: # (        int xCoordinate)
+
+[//]: # (        int yCoordinate)
+
+[//]: # (        int colorValue)
+
+[//]: # (        timestamp lastModified)
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    Palette {)
+
+[//]: # (        int paletteId PK)
+
+[//]: # (        int userId FK)
+
+[//]: # (        string paletteName)
+
+[//]: # (        boolean isDefault)
+
+[//]: # (        timestamp createdAt)
+
+[//]: # (        timestamp lastUsed)
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    PaletteColor {)
+
+[//]: # (        int colorId PK)
+
+[//]: # (        int paletteId FK)
+
+[//]: # (        int colorValue)
+
+[//]: # (        int colorOrder)
+
+[//]: # (        string colorName)
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    AutosaveSnapshot {)
+
+[//]: # (        int snapshotId PK)
+
+[//]: # (        int projectId FK)
+
+[//]: # (        blob snapshotData)
+
+[//]: # (        timestamp createdAt)
+
+[//]: # (        int fileSize)
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    ExportHistory {)
+
+[//]: # (        int exportId PK)
+
+[//]: # (        int projectId FK)
+
+[//]: # (        string fileName)
+
+[//]: # (        string filePath)
+
+[//]: # (        string fileFormat)
+
+[//]: # (        int resolution)
+
+[//]: # (        int scaleFactor)
+
+[//]: # (        timestamp exportedAt)
+
+[//]: # (        int fileSizeBytes)
+
+[//]: # (    })
+
+[//]: # (```)
 
 ## Entity Descriptions
 
@@ -294,3 +381,7 @@ If animation features are added:
 If collaboration features are added:
 - **ProjectCollaborator** junction table (User-Project many-to-many)
 - **VersionHistory** entity for tracking changes and merges
+
+---
+
+

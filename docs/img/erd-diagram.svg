@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000">
+  <defs>
+    <style>
+      .entity-box { fill: #fff; stroke: #333; stroke-width: 2; }
+      .entity-title { fill: #4a90e2; font-weight: bold; font-size: 18px; font-family: Arial, sans-serif; }
+      .attribute { fill: #333; font-size: 14px; font-family: 'Courier New', monospace; }
+      .relationship { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .relationship-label { fill: #666; font-size: 13px; font-style: italic; font-family: Arial, sans-serif; }
+      .cardinality { fill: #888; font-size: 12px; font-family: Arial, sans-serif; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666" />
+    </marker>
+  </defs>
+
+  <!-- User Entity -->
+  <g id="user">
+    <rect class="entity-box" x="50" y="50" width="280" height="260" rx="5"/>
+    <text class="entity-title" x="160" y="80" text-anchor="middle">User</text>
+    <line x1="60" y1="90" x2="320" y2="90" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="70" y="115">int userId PK</text>
+    <text class="attribute" x="70" y="135">string username</text>
+    <text class="attribute" x="70" y="155">string email</text>
+    <text class="attribute" x="70" y="175">string authToken</text>
+    <text class="attribute" x="70" y="195">int defaultCanvasWidth</text>
+    <text class="attribute" x="70" y="215">int defaultCanvasHeight</text>
+    <text class="attribute" x="70" y="235">string themePreference</text>
+    <text class="attribute" x="70" y="255">boolean gridVisibility</text>
+    <text class="attribute" x="70" y="275">float zoomSensitivity</text>
+    <text class="attribute" x="70" y="295">timestamp createdAt</text>
+  </g>
+
+  <!-- Project Entity -->
+  <g id="project">
+    <rect class="entity-box" x="500" y="50" width="280" height="240" rx="5"/>
+    <text class="entity-title" x="640" y="80" text-anchor="middle">Project</text>
+    <line x1="510" y1="90" x2="770" y2="90" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="520" y="115">int projectId PK</text>
+    <text class="attribute" x="520" y="135">int userId FK</text>
+    <text class="attribute" x="520" y="155">string projectName</text>
+    <text class="attribute" x="520" y="175">int canvasWidth</text>
+    <text class="attribute" x="520" y="195">int canvasHeight</text>
+    <text class="attribute" x="520" y="215">timestamp createdAt</text>
+    <text class="attribute" x="520" y="235">timestamp lastEditedAt</text>
+    <text class="attribute" x="520" y="255">blob thumbnailImage</text>
+    <text class="attribute" x="520" y="275">boolean isDeleted</text>
+  </g>
+
+  <!-- Layer Entity -->
+  <g id="layer">
+    <rect class="entity-box" x="950" y="50" width="280" height="200" rx="5"/>
+    <text class="entity-title" x="1090" y="80" text-anchor="middle">Layer</text>
+    <line x1="960" y1="90" x2="1220" y2="90" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="970" y="115">int layerId PK</text>
+    <text class="attribute" x="970" y="135">int projectId FK</text>
+    <text class="attribute" x="970" y="155">string layerName</text>
+    <text class="attribute" x="970" y="175">int layerOrder</text>
+    <text class="attribute" x="970" y="195">boolean isVisible</text>
+    <text class="attribute" x="970" y="215">boolean isLocked</text>
+    <text class="attribute" x="970" y="235">float opacity</text>
+  </g>
+
+  <!-- Pixel Entity -->
+  <g id="pixel">
+    <rect class="entity-box" x="950" y="320" width="280" height="180" rx="5"/>
+    <text class="entity-title" x="1090" y="350" text-anchor="middle">Pixel</text>
+    <line x1="960" y1="360" x2="1220" y2="360" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="970" y="385">int pixelId PK</text>
+    <text class="attribute" x="970" y="405">int layerId FK</text>
+    <text class="attribute" x="970" y="425">int xCoordinate</text>
+    <text class="attribute" x="970" y="445">int yCoordinate</text>
+    <text class="attribute" x="970" y="465">int colorValue</text>
+    <text class="attribute" x="970" y="485">timestamp lastModified</text>
+  </g>
+
+  <!-- Palette Entity -->
+  <g id="palette">
+    <rect class="entity-box" x="50" y="390" width="280" height="180" rx="5"/>
+    <text class="entity-title" x="190" y="420" text-anchor="middle">Palette</text>
+    <line x1="60" y1="430" x2="320" y2="430" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="70" y="455">int paletteId PK</text>
+    <text class="attribute" x="70" y="475">int userId FK</text>
+    <text class="attribute" x="70" y="495">string paletteName</text>
+    <text class="attribute" x="70" y="515">boolean isDefault</text>
+    <text class="attribute" x="70" y="535">timestamp createdAt</text>
+    <text class="attribute" x="70" y="555">timestamp lastUsed</text>
+  </g>
+
+  <!-- PaletteColor Entity -->
+  <g id="palettecolor">
+    <rect class="entity-box" x="50" y="650" width="280" height="160" rx="5"/>
+    <text class="entity-title" x="190" y="680" text-anchor="middle">PaletteColor</text>
+    <line x1="60" y1="690" x2="320" y2="690" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="70" y="715">int colorId PK</text>
+    <text class="attribute" x="70" y="735">int paletteId FK</text>
+    <text class="attribute" x="70" y="755">int colorValue</text>
+    <text class="attribute" x="70" y="775">int colorOrder</text>
+    <text class="attribute" x="70" y="795">string colorName</text>
+  </g>
+
+  <!-- AutosaveSnapshot Entity -->
+  <g id="autosave">
+    <rect class="entity-box" x="500" y="390" width="280" height="160" rx="5"/>
+    <text class="entity-title" x="640" y="420" text-anchor="middle">AutosaveSnapshot</text>
+    <line x1="510" y1="430" x2="770" y2="430" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="520" y="455">int snapshotId PK</text>
+    <text class="attribute" x="520" y="475">int projectId FK</text>
+    <text class="attribute" x="520" y="495">blob snapshotData</text>
+    <text class="attribute" x="520" y="515">timestamp createdAt</text>
+    <text class="attribute" x="520" y="535">int fileSize</text>
+  </g>
+
+  <!-- ExportHistory Entity -->
+  <g id="export">
+    <rect class="entity-box" x="500" y="630" width="280" height="200" rx="5"/>
+    <text class="entity-title" x="640" y="660" text-anchor="middle">ExportHistory</text>
+    <line x1="510" y1="670" x2="770" y2="670" stroke="#4a90e2" stroke-width="2"/>
+    <text class="attribute" x="520" y="695">int exportId PK</text>
+    <text class="attribute" x="520" y="715">int projectId FK</text>
+    <text class="attribute" x="520" y="735">string fileName</text>
+    <text class="attribute" x="520" y="755">string filePath</text>
+    <text class="attribute" x="520" y="775">string fileFormat</text>
+    <text class="attribute" x="520" y="795">int resolution</text>
+    <text class="attribute" x="520" y="815">int scaleFactor</text>
+  </g>
+
+  <!-- Relationships -->
+  <!-- User creates Project -->
+  <path class="relationship" d="M 330 170 L 500 170"/>
+  <text class="relationship-label" x="400" y="160" text-anchor="middle">creates</text>
+  <text class="cardinality" x="340" y="165">1</text>
+  <text class="cardinality" x="480" y="165">0..*</text>
+
+  <!-- User creates Palette -->
+  <path class="relationship" d="M 190 310 L 190 390"/>
+  <text class="relationship-label" x="210" y="355" text-anchor="start">creates</text>
+  <text class="cardinality" x="195" y="325">1</text>
+  <text class="cardinality" x="195" y="385">0..*</text>
+
+  <!-- Project contains Layer -->
+  <path class="relationship" d="M 780 150 L 950 150"/>
+  <text class="relationship-label" x="850" y="140" text-anchor="middle">contains</text>
+  <text class="cardinality" x="790" y="145">1</text>
+  <text class="cardinality" x="930" y="145">1..*</text>
+
+  <!-- Layer contains Pixel -->
+  <path class="relationship" d="M 1090 250 L 1090 320"/>
+  <text class="relationship-label" x="1110" y="290" text-anchor="start">contains</text>
+  <text class="cardinality" x="1095" y="265">1</text>
+  <text class="cardinality" x="1095" y="315">0..*</text>
+
+  <!-- Project has AutosaveSnapshot -->
+  <path class="relationship" d="M 640 290 L 640 390"/>
+  <text class="relationship-label" x="660" y="345" text-anchor="start">has</text>
+  <text class="cardinality" x="645" y="305">1</text>
+  <text class="cardinality" x="645" y="385">0..*</text>
+
+  <!-- Project generates ExportHistory -->
+  <path class="relationship" d="M 640 290 L 640 630"/>
+  <text class="relationship-label" x="660" y="465" text-anchor="start">generates</text>
+  <text class="cardinality" x="645" y="305">1</text>
+  <text class="cardinality" x="645" y="625">0..*</text>
+
+  <!-- Palette contains PaletteColor -->
+  <path class="relationship" d="M 190 570 L 190 650"/>
+  <text class="relationship-label" x="210" y="615" text-anchor="start">contains</text>
+  <text class="cardinality" x="195" y="585">1</text>
+  <text class="cardinality" x="195" y="645">1..*</text>
+
+  <!-- Title -->
+  <text x="700" y="950" text-anchor="middle" style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif; fill: #333;">Pixel Create - Entity Relationship Diagram</text>
+</svg>
