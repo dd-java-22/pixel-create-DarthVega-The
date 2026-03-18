@@ -189,3 +189,4 @@ Records of all export operations including file details, format, resolution, and
 - Boolean fields (is_deleted, is_visible, is_locked, is_default, grid_visibility) are stored as INTEGER (0 = false, 1 = true).
 - All foreign key relationships include `ON DELETE CASCADE` to maintain referential integrity.
 - Indices are created on foreign keys and frequently queried columns to optimize performance.
+

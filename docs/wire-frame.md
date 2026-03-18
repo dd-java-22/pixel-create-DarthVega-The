@@ -5,4 +5,4 @@ order: 10
 ---
 
 ### WireFrame Diagram
-[![wireframe-diagram](img/first-draft-wireframe.svg)](pdf/first-draft-wireframe.pdf)
+[![wireframe-diagram](img/wireframe-diagram.svg)](pdf/wireframe-diagram.pdf)
