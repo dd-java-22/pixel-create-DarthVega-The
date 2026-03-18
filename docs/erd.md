@@ -294,3 +294,4 @@ If animation features are added:
 If collaboration features are added:
 - **ProjectCollaborator** junction table (User-Project many-to-many)
 - **VersionHistory** entity for tracking changes and merges
+
