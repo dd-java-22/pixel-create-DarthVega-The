@@ -1,5 +1,5 @@
 ---
-title: Data Model
+title: WireFrame Diagram
 description: "UML class diagram, entity-relationship diagram, and DDL."
 order: 10
 ---
