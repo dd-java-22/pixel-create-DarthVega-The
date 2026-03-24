@@ -5,3 +5,5 @@ order: 0
 ---
 
 ## UML Class Diagram
+
+[![uml-class-diagram](img/uml-class-diagram.svg)](pdf/uml-class-diagram.pdf)
