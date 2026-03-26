@@ -1,8 +1,9 @@
 ---
-title: WireFrame Diagram
-description: "UML class diagram, entity-relationship diagram, and DDL."
+title: Wireframe & UI Design
+description: "User interface wireframe diagram showing app screens and navigation flow."
 order: 10
 ---
 
-### WireFrame Diagram
+## Wireframe Diagram
+
 [![wireframe-diagram](img/wireframe-diagram.svg)](pdf/wireframe-diagram.pdf)

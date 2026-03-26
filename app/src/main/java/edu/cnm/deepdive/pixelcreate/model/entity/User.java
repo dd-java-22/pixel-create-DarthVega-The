@@ -28,8 +28,9 @@ public class User {
   @ColumnInfo(name = "email")
   private String email = "";
 
-  @ColumnInfo(name = "auth_token")
-  private String authToken;
+  @NonNull
+  @ColumnInfo(name = "oauth_key")
+  private String oauthKey = "";
 
   @ColumnInfo(name = "default_canvas_width")
   private int defaultCanvasWidth;
@@ -79,12 +80,13 @@ public class User {
     this.email = email;
   }
 
-  public String getAuthToken() {
-    return authToken;
+  @NonNull
+  public String getOauthKey() {
+    return oauthKey;
   }
 
-  public void setAuthToken(String authToken) {
-    this.authToken = authToken;
+  public void setOauthKey(@NonNull String oauthKey) {
+    this.oauthKey = oauthKey;
   }
 
   public int getDefaultCanvasWidth() {
