@@ -4,13 +4,13 @@ description: "Database schema and entity relationships for Pixel Create"
 order: 11
 ---
 
+[![updated-erd-diagram](img/updated-erd-diagram.svg)](pdf/updated-erd-diagram.pdf)
+
 ## Entity-Relationship Diagram
 
 This ERD represents the database structure for the Pixel Create pixel art application, designed to support local persistence using Room Database with potential for cloud synchronization.
 
 For detailed descriptions and source code links for all entity classes and DAO interfaces, see the [Entity Classes](entities.md) page.
-
-[![updated-erd-diagram](img/updated-erd-diagram.svg)](pdf/updated-erd-diagram.pdf)
 
 ## Entity Descriptions
 
