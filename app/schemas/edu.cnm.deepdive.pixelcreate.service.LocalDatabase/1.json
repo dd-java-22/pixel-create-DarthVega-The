@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0b5639c39737b7fad0c36eb15cf973b2",
+    "identityHash": "1e6986e229f01c3a016cc5f208591a12",
     "entities": [
       {
         "tableName": "user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT NOT NULL, `email` TEXT NOT NULL, `auth_token` TEXT, `default_canvas_width` INTEGER NOT NULL, `default_canvas_height` INTEGER NOT NULL, `theme_preference` TEXT, `grid_visibility` INTEGER NOT NULL, `zoom_sensitivity` REAL NOT NULL, `created_at` INTEGER NOT NULL, `last_login` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT NOT NULL, `email` TEXT NOT NULL, `oauth_key` TEXT NOT NULL, `default_canvas_width` INTEGER NOT NULL, `default_canvas_height` INTEGER NOT NULL, `theme_preference` TEXT, `grid_visibility` INTEGER NOT NULL, `zoom_sensitivity` REAL NOT NULL, `created_at` INTEGER NOT NULL, `last_login` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -27,9 +27,10 @@
             "notNull": true
           },
           {
-            "fieldPath": "authToken",
-            "columnName": "auth_token",
-            "affinity": "TEXT"
+            "fieldPath": "oauthKey",
+            "columnName": "oauth_key",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "defaultCanvasWidth",
@@ -713,7 +714,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0b5639c39737b7fad0c36eb15cf973b2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1e6986e229f01c3a016cc5f208591a12')"
     ]
   }
 }
