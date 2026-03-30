@@ -8,4 +8,4 @@ order: 10
 
 For detailed descriptions of each entity class and DAO interface, see the [Entity Classes](entities.md) page.
 
-[![uml-class-diagram](../img/uml-class-diagram.svg)](../pdf/uml-class-diagram.pdf)
+[![uml-class-diagram](../img/uml-class-diagram-v2.svg)](../pdf/uml-class-diagram-v2.pdf)

@@ -4,7 +4,7 @@ description: "Database schema and entity relationships for Pixel Create"
 order: 11
 ---
 
-[![updated-erd-diagram](../img/updated-erd-diagram.svg)](../pdf/updated-erd-diagram.pdf)
+[![updated-erd-diagram](../img/erd-diagram-v2.svg)](../pdf/erd-diagram-v2.pdf)
 
 ## Entity-Relationship Diagram
 
