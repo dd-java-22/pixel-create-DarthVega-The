@@ -123,6 +123,15 @@ public interface UserDao {
   LiveData<User> selectByEmail(String email);
 
   /**
+   * Retrieves a user by their OAuth key.
+   *
+   * @param oauthKey OAuth authentication key.
+   * @return LiveData containing the user, or {@code null} if not found.
+   */
+  @Query("SELECT * FROM user WHERE oauth_key = :oauthKey")
+  LiveData<User> selectByOauthKey(String oauthKey);
+
+  /**
    * Retrieves all users from the database, ordered by username.
    *
    * @return LiveData containing a list of all users.

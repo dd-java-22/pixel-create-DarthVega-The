@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2026 CNM Ingenuity, Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+  <!-- Login -->
+  <string name="login_title">Sign In</string>
+  <string name="login_subtitle">Create pixel art one pixel at a time</string>
+  <string name="sign_in_failed">Sign in failed. Please try again.</string>
+  
+  <!-- Project Gallery -->
+  <string name="project_gallery_title">My Projects</string>
+  <string name="new_project">New Project</string>
+  <string name="manage_palettes">Manage Palettes</string>
+  
+  <!-- Drawing Canvas -->
+  <string name="drawing_canvas_title">Drawing Canvas</string>
+  
+  <!-- Palette Management -->
+  <string name="palette_management_title">Palette Management</string>
+  
+  <!-- Settings -->
+  <string name="settings_title">Settings</string>
+  <string name="settings">Settings</string>
+  <string name="sign_out">Sign Out</string>
+  
+  <!-- Preferences -->
+  <string name="canvas_settings_category">Canvas Settings</string>
+  <string name="appearance_settings_category">Appearance</string>
+  <string name="default_canvas_width">Default Canvas Width</string>
+  <string name="default_canvas_height">Default Canvas Height</string>
+  <string name="show_grid">Show Grid</string>
+  <string name="theme">Theme</string>
+  
+  <!-- Theme Options -->
+  <string-array name="theme_entries">
+    <item>Light</item>
+    <item>Dark</item>
+    <item>System Default</item>
+  </string-array>
+  <string-array name="theme_values">
+    <item>light</item>
+    <item>dark</item>
+    <item>system</item>
+  </string-array>
+</resources>

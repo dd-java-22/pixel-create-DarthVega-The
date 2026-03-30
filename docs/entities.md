@@ -14,7 +14,7 @@ For a visual representation of how these entities relate to each other, see the 
 
 | Entity Class | Description | Source Code |
 |--------------|-------------|-------------|
-| **User** | Stores user account information, authentication details, and personalized settings including default canvas dimensions, theme preferences, and tool settings. | [User.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/User.java) |
+| **User** | Stores user account information, OAuth authentication key (unique identifier from authentication provider), and personalized settings including default canvas dimensions, theme preferences, and tool settings. | [User.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/User.java) |
 | **Project** | Represents a pixel art creation with metadata including project name, canvas dimensions, timestamps, thumbnail preview, and soft-delete flag. Central entity that ties together layers, snapshots, and export history. | [Project.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/Project.java) |
 | **Layer** | Individual drawing layers within a project supporting complex artwork with stacking order, visibility controls, lock state, and opacity settings. | [Layer.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/Layer.java) |
 | **Pixel** | Stores individual pixel color data tied to a specific layer and position. Contains x/y coordinates, color value, and last modified timestamp. | [Pixel.java](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/model/entity/Pixel.java) |
@@ -85,7 +85,7 @@ Each entity has a corresponding DAO interface that provides database operations 
 These entities and DAOs are managed by the Room Database framework. For more information:
 
 - **Database Schema**: See [SQL DDL](ddl.md) for complete table definitions
-- **Database Class**: The `LocalDatabase` class coordinates all DAOs and entities
+- **Database Class**: The [`LocalDatabase`](https://github.com/dd-java-22/pixel-create-DarthVega-The/blob/main/app/src/main/java/edu/cnm/deepdive/pixelcreate/service/LocalDatabase.java) class coordinates all DAOs and entities
 - **Type Converters**: The `LocalDatabase.Converters` class handles conversion of `Instant` timestamps to SQLite-compatible types
 
 ---

@@ -205,11 +205,11 @@ classDiagram
         +void setFileSize(int fileSize)
     }
 
-    User "1" --> "0..*" Project : has
-    User "1" --> "0..*" Palette : has
-    Project "1" --> "1..*" Layer : has
-    Project "1" --> "0..*" ExportHistory : has
-    Project "1" --> "0..*" AutosaveSnapshot : has
-    Layer "1" --> "0..*" Pixel : contains
-    Palette "1" --> "0..*" PaletteColor : has
+    User "1" --o "0..*" Project : has
+    User "1" --o "0..*" Palette : has
+    Project "1" *-- "1..*" Layer : has
+    Project "1" *-- "0..*" ExportHistory : has
+    Project "1" *-- "0..*" AutosaveSnapshot : has
+    Layer "1" *-- "0..*" Pixel : contains
+    Palette "1" *-- "0..*" PaletteColor : has
 

@@ -19,28 +19,51 @@ Pixel Create is a mobile Android application designed to let users create retro-
 ## Intended users and user stories
 
 ### The Hobby Artist
+{:.no_toc}
+
 People who enjoy drawing casually and want a simple, relaxing creative outlet.
-Why they care:
+
+**User Stories:**
+- As a hobby artist, I want an easy way to create pixel art on my mobile device, in order to doodle and experiment during my free time.
+- As a casual artist, I want to save my work and access it from any device, in order to continue my projects seamlessly across my phone, tablet, or computer.
+
+**Why they care:**
 - Pixel art feels approachable and low‑pressure, it's an art form that is suitable for both beginners and experienced artists.
-- As an artist, I want an easy way to doodle, experiment, and share my creations.
 - Tools like undo/redo, zoom, and palettes make the drawing experience feel smooth and intuitive.
-- I want to be able to save my work and access it from any device, whether it's on my phone, tablet, or computer.
+
 ### Retro Game Enthusiasts
-  Fans of classic games or people who want to create sprites for fun.
-  Why they care:
+{:.no_toc}
+
+Fans of classic games or people who want to create sprites for fun.
+
+**User Stories:**
+- As a retro game enthusiast, I want to recreate pixel art from classic games, in order to connect with the nostalgic art style of games I grew up with.
+- As a sprite artist, I need the ability to export at different resolutions, in order to share my art or use it in small personal projects.
+
+**Why they care:**
 - Pixel art was very prevalent in the games I grew up with, drawing pixel art fills me with nostalgia.
 - This app would be great for recreating my favorite retro game characters or developing my own pixel art sprites.
-- The ability to export at different resolutions would be fantastic for sharing art or using it in small personal projects.
+
 ### Indie Game Developers (Beginner Level)
-  Students or hobbyists building small games who need simple sprite creation.
-  Why they care:
+{:.no_toc}
+
+Students or hobbyists building small games who need simple sprite creation.
+
+**User Stories:**
+- As an indie game developer, I need features like layering, grids, and export resolution controls, in order to create game-ready sprites that integrate seamlessly into my projects.
+- As a hobbyist game developer, I want an art gallery to manage multiple assets, in order to organize characters, tiles, and icons for my game.
+
+**Why they care:**
 - Pixel art is a quick way to sketch ideas or build simple assets for a game.
-- As an indie developer, features like layering, grids, and export resolution are essential for game integration.
-- An art gallery would help me manage multiple assets such as characters, tiles, and icons.
+- An organized workflow helps manage multiple game assets efficiently.
 
 ## Functionality
 
+_Note: Autosave and export history features may be considered stretch goals given the project timeline and the number of entities involved._
+
 ### 🎨 Canvas and Drawing Capabilities
+{:.no_toc}
+
 These functions define how users create and manipulate pixel art on the canvas.
 - Canvas creation — Users choose width and height to start a new project.
 - Pixel editing — Tap to color individual pixels with precision.
@@ -51,6 +74,8 @@ These functions define how users create and manipulate pixel art on the canvas.
 - Layer support (optional) — Add, hide, reorder, or lock layers for complex artwork.
 
 ### 🎨 Color and Palette Management
+{:.no_toc}
+
 These functions support color selection and consistency across projects.
 - Color palette selection — Choose from a default palette for quick access.
 - Custom palette creation — Save personalized color sets for reuse.
@@ -58,6 +83,8 @@ These functions support color selection and consistency across projects.
 - Palette persistence — Store palettes in SQLite for long‑term use.
 
 ### 💾 Project Storage and Data Persistence
+{:.no_toc}
+
 These functions ensure users can save, load, and manage their artwork reliably.
 - Local project saving — Store pixel, layer, and project metadata in SQLite.
 - Autosave — Automatically update project state to prevent data loss.
@@ -69,6 +96,8 @@ These functions ensure users can save, load, and manage their artwork reliably.
 - Export history (optional) — Log exports in SQLite for tracking.
 
 ### 🖼️ Project Gallery and Data‑Driven UI
+{:.no_toc}
+
 These functions create a dynamic, user‑friendly home screen.
 - Thumbnail previews — Display a small rendered version of each project.
 - Project metadata display — Show name, size, and last‑edited timestamp.
@@ -80,6 +109,8 @@ These functions create a dynamic, user‑friendly home screen.
 All persistent data is managed using Room Database with entity classes that represent the database schema. Each entity has a corresponding Data Access Object (DAO) interface providing database operations. For complete entity class and DAO documentation with source code links, see the [Entity Classes](entities.md) page. For visual representations, see the [Entity-Relationship Diagram](erd.md) and [UML Class Diagram](uml.md).
 
 ### 📁 Core Project Data
+{:.no_toc}
+
 This is the essential information needed to reconstruct a user's artwork on any device.
 - Project metadata — project name, canvas size, creation date, last edited timestamp.
 - Pixel data — the color value of each pixel in the canvas.
@@ -88,6 +119,8 @@ This is the essential information needed to reconstruct a user's artwork on any 
   These items allow a user to open their project anywhere and continue seamlessly.
 
 ### 🎨 Color and Palette Data
+{:.no_toc}
+
 Color information supports consistent creative workflows.
 - Custom palettes — user‑created color sets stored for reuse.
 - Palette colors — individual color values tied to each palette.
@@ -95,6 +128,8 @@ Color information supports consistent creative workflows.
   This enables a user’s preferred colors to follow them across devices.
 
 ### 🖼️ Gallery and Asset Management
+{:.no_toc}
+
 The server can maintain a structured view of all user projects.
 - Thumbnail images — small preview images generated on save or upload.
 - Project organization data — folder structure, tags, or sorting preferences.
@@ -102,6 +137,8 @@ The server can maintain a structured view of all user projects.
   This supports a dynamic, cloud‑synced gallery.
 
 ### 💾 Export and Sharing Data
+{:.no_toc}
+
 If the app supports exporting or sharing artwork online, the server may store:
 - Export history — timestamps, resolution, and file type of each export.
 - Exported images — PNG files stored for download or sharing.
@@ -109,6 +146,8 @@ If the app supports exporting or sharing artwork online, the server may store:
   This enables users to access their exported art from anywhere.
 
 ### 👤 User Profile and Settings
+{:.no_toc}
+
 These settings personalize the experience across devices.
 - Account information — username, email, authentication tokens.
 - Default canvas size — user preference for new projects.
@@ -118,34 +157,50 @@ These settings personalize the experience across devices.
 
 ## Device/external services
 
-### 📸 Camera Access
-   
+### Camera Access
+{:.no_toc}
+
+**Documentation:** [CameraX](https://developer.android.com/media/camera/camerax)
+
+**How the app uses it:**
 - Taking a photo to use as a reference layer
 - Capturing an image to pixelate
 - Any real‑time camera‑based pixelation feature
-  Permission needed:
-  android.permission.CAMERA
-  This is the most significant device integration in your app.
 
-### 📁 External Storage Access
-  
-- Exporting PNG files to the user’s gallery
-- Importing images from the device’s photo library
+**Permission needed:** `android.permission.CAMERA`
+
+**Impact if unavailable:** Camera-based features (photo capture, pixelation filters) would be disabled. Core drawing and project management features would remain functional.
+
+### MediaStore (External Storage Access)
+{:.no_toc}
+
+**Documentation:** [Shared Storage with MediaStore](https://developer.android.com/training/data-storage/shared/media)
+
+**How the app uses it:**
+- Exporting PNG files to the user's gallery
+- Importing images from the device's photo library
 - Loading reference images from Downloads or Pictures
-  Permissions (depending on Android version):
-- READ_MEDIA_IMAGES (Android 13+)
-- READ_EXTERNAL_STORAGE (older versions)
-- WRITE_EXTERNAL_STORAGE (legacy only; modern apps use MediaStore instead)
-  This is essential for any import/export workflow outside the app’s private storage.
 
-### 👤 Notifications
-  
+**Permissions (depending on Android version):**
+- `READ_MEDIA_IMAGES` (Android 13+)
+- `READ_EXTERNAL_STORAGE` (older versions)
+- `WRITE_EXTERNAL_STORAGE` (legacy only; modern apps use MediaStore instead)
+
+**Impact if unavailable:** Users cannot export artwork to their device gallery or import external images. Projects can still be saved within the app's internal storage.
+
+### Notification Service
+{:.no_toc}
+
+**Documentation:** [Notifications Overview](https://developer.android.com/develop/ui/views/notifications)
+
+**How the app uses it:**
 - Autosave notifications
 - Export‑complete notifications
 - Background processing alerts
-  Permission needed (Android 13+):
-  POST_NOTIFICATIONS
-  This is optional but improves user experience.
+
+**Permission needed (Android 13+):** `POST_NOTIFICATIONS`
+
+**Impact if unavailable:** Users won't receive visual notifications about background operations. The app remains fully functional without notifications.
 
 ## Stretch Goals and Possible Enhancements 
 
@@ -194,65 +249,26 @@ If we add:
 -  Firebase or similar tools.
 Permission: not required, but uses network access.
 
-### Device-Based-Services
+### SQLite / Room Database
+{:.no_toc}
 
-### MediaStore 
-Documentation: https://developer.android.com/training/data-storage/shared/media 
+**Documentation:** [Room Persistence Library](https://developer.android.com/training/data-storage/room)
 
-How the app uses it:
-
-- Export PNG images to the user’s gallery
-
-- Save thumbnails for the project gallery
-
-- Import reference images from Photos/Downloads
-
-Does the app function without it: Yes, but exporting/importing images would be disabled.
-
-### SQLite / Room Database 
-Documentation: https://developer.android.com/training/data-storage/room 
-
-How the app uses it:
-
+**How the app uses it:**
 - Store project metadata (name, size, timestamps)
-
 - Store pixel data and layer data
-
 - Store custom palettes
-
 - Store autosave snapshots
 
-Does the app function without it: No. Persistent project storage depends on it.
+**Impact if unavailable:** The app cannot function without Room Database. All persistent project storage, user settings, and artwork data depend on it.
 
-### Camera Service 
-Documentation: https://developer.android.com/guide/topics/media/camera 
+### Photo Picker
+{:.no_toc}
 
-How the app uses it:
+**Documentation:** [Photo Picker](https://developer.android.com/training/data-storage/shared/photopicker)
 
-- Capture photos to use as reference layers
-
-- Capture images to convert into pixel art
-
-Does the app function without it: Yes, only camera‑based features would be unavailable.
-
-### Photo Picker / Storage Access 
-Documentation: https://developer.android.com/training/data-storage/shared/photopicker
-
-How the app uses it:
-
+**How the app uses it:**
 - Import images from device storage
-
 - Load reference images
 
-Does the app function without it: Yes, but users cannot import external images.
-
-### Notification Service 
-Documentation: https://developer.android.com/develop/ui/views/notifications 
-
-How the app uses it:
-
-- Notify users of autosave events
-
-- Notify when export completes
-
-Does the app function without it: Yes. Notifications are optional.
+**Impact if unavailable:** Users cannot import external images as references. All other features remain functional.
