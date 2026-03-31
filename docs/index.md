@@ -24,12 +24,11 @@ Pixel Create is a mobile Android application designed to let users create retro-
 People who enjoy drawing casually and want a simple, relaxing creative outlet.
 
 **User Stories:**
-- As a hobby artist, I want an easy way to create pixel art on my mobile device, in order to doodle and experiment during my free time.
-- As a casual artist, I want to save my work and access it from any device, in order to continue my projects seamlessly across my phone, tablet, or computer.
+- As a hobby artist, I want an easy way to create pixel art on my mobile device, so that I can doodle and experiment during my free time.
+- As a hobby artist, I want to save my work and access it from any device, so that I can continue my projects seamlessly across my phone, tablet, or computer.
 
 **Why they care:**
-- Pixel art feels approachable and low‑pressure, it's an art form that is suitable for both beginners and experienced artists.
-- Tools like undo/redo, zoom, and palettes make the drawing experience feel smooth and intuitive.
+- Pixel art feels approachable and low‑pressure, and simple tools like undo/redo and palettes make the experience relaxing.
 
 ### Retro Game Enthusiasts
 {:.no_toc}
@@ -37,12 +36,11 @@ People who enjoy drawing casually and want a simple, relaxing creative outlet.
 Fans of classic games or people who want to create sprites for fun.
 
 **User Stories:**
-- As a retro game enthusiast, I want to recreate pixel art from classic games, in order to connect with the nostalgic art style of games I grew up with.
-- As a sprite artist, I need the ability to export at different resolutions, in order to share my art or use it in small personal projects.
+- As a retro game enthusiast, I want to recreate pixel art from classic games, so that I can connect with the nostalgic art style I grew up with.
+- As a retro game enthusiast, I want to export my artwork at different resolutions, so that I can share it or use it in small personal projects.
 
 **Why they care:**
-- Pixel art was very prevalent in the games I grew up with, drawing pixel art fills me with nostalgia.
-- This app would be great for recreating my favorite retro game characters or developing my own pixel art sprites.
+- Pixel art evokes nostalgia and allows them to recreate or reinterpret classic game characters.
 
 ### Indie Game Developers (Beginner Level)
 {:.no_toc}
@@ -50,12 +48,11 @@ Fans of classic games or people who want to create sprites for fun.
 Students or hobbyists building small games who need simple sprite creation.
 
 **User Stories:**
-- As an indie game developer, I need features like layering, grids, and export resolution controls, in order to create game-ready sprites that integrate seamlessly into my projects.
-- As a hobbyist game developer, I want an art gallery to manage multiple assets, in order to organize characters, tiles, and icons for my game.
+- As an indie game developer, I need features like layering, grids, and export controls, so that I can create game‑ready sprites that integrate smoothly into my projects.
+- As an indie game developer, I want an art gallery to manage multiple assets, so that I can organize characters, tiles, and icons for my game.
 
 **Why they care:**
-- Pixel art is a quick way to sketch ideas or build simple assets for a game.
-- An organized workflow helps manage multiple game assets efficiently.
+- Pixel art allows quick prototyping, and an organized workflow helps manage multiple game assets efficiently.
 
 ## Functionality
 
