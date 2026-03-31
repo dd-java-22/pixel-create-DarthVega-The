@@ -19,7 +19,9 @@
   <string name="login_title">Sign In</string>
   <string name="login_subtitle">Create pixel art one pixel at a time</string>
   <string name="sign_in_failed">Sign in failed. Please try again.</string>
-  
+  <string name="default_web_client_id">84231755288-l69qead9m4ee2dmt87p5aaajki8cdfck.apps.googleusercontent.com</string>
+
+
   <!-- Project Gallery -->
   <string name="project_gallery_title">My Projects</string>
   <string name="new_project">New Project</string>

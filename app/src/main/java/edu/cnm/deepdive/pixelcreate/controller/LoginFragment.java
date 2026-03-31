@@ -63,11 +63,11 @@ public class LoginFragment extends Fragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     // Configure Google Sign In
-    GoogleSignInOptions options = new GoogleSignInOptions.Builder()
+    GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
-        .requestId()
-        .requestProfile()
+        .requestIdToken(getString(R.string.default_web_client_id))
         .build();
+
     client = GoogleSignIn.getClient(requireContext(), options);
     // Register activity result launcher for sign-in
     launcher = registerForActivityResult(
