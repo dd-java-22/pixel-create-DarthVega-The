@@ -10,6 +10,8 @@ The SQL DDL (Data Definition Language) statements below define the complete data
 
 ### Database Schema
 
+{% include linked-file.md type="sqlite" file="sql/ddl.sql" %}
+
 ## Table Descriptions
 
 ### user
