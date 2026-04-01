@@ -45,3 +45,14 @@
     app:layout_constraintTop_toBottomOf="@id/canvas_title"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--todo: Add these to undo/redo buttons-->
+<!--  binding.undoButton.setOnClickListener {-->
+<!--  binding.pixelCanvas.undo()-->
+<!--  }-->
+
+<!--  binding.redoButton.setOnClickListener {-->
+<!--  binding.pixelCanvas.redo()-->
+<!--  }-->
+

@@ -23,6 +23,7 @@ plugins {
     alias(libs.plugins.navigation.safeargs)
     alias(libs.plugins.schema.parser)
     alias(libs.plugins.junit)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -79,11 +80,21 @@ android {
         // Enable dataBinding if desired.
         // dataBinding = true
     }
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(
+                org.jetbrains.kotlin.gradle.dsl.JvmTarget.valueOf(
+                    "JVM_${libs.versions.java.get()}"
+                )
+            )
+        }
+    }
 
 }
 
 dependencies {
 
+    implementation(libs.core.ktx)
     // .jar-based libraries included in project
 
     // Desugaring for subset of JDK
