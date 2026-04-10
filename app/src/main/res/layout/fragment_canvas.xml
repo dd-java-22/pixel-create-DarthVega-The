@@ -22,7 +22,7 @@
       android:layout_height="48dp"
       android:background="@android:color/transparent"
       android:src="@drawable/ic_undo"
-      android:tint="#fff"/>
+      app:tint="#fff"/>
 
     <ImageButton
       android:id="@+id/redoButton"
@@ -30,7 +30,7 @@
       android:layout_height="48dp"
       android:background="@android:color/transparent"
       android:src="@drawable/ic_redo"
-      android:tint="#fff"/>
+      app:tint="#fff"/>
 
     <!-- Add more tool buttons here -->
 

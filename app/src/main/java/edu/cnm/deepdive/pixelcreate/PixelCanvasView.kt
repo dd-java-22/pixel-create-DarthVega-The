@@ -33,6 +33,10 @@ class PixelCanvasView @JvmOverloads constructor(
 
     var currentColor: Int = Color.BLACK
 
+    // Tools
+    enum class Tool { PENCIL }
+    var currentTool: Tool = Tool.PENCIL
+
     // Zoom & pan
     private var scaleFactor = 1f
     private var offsetX = 0f
@@ -107,14 +111,20 @@ class PixelCanvasView @JvmOverloads constructor(
             val row = floor(canvasY / cellHeight).toInt()
 
             if (row in 0 until gridSize && col in 0 until gridSize) {
-                val activeLayer = layerManager.getActiveLayer()
-                layerManager.saveStateForActiveLayer()
-                activeLayer.pixels[row][col] = currentColor
-                invalidate()
+                when (currentTool) {
+                    Tool.PENCIL -> drawPixel(row, col)
+                }
             }
         }
 
         return true
+    }
+
+    private fun drawPixel(row: Int, col: Int) {
+        val layer = layerManager.getActiveLayer()
+        layerManager.saveStateForActiveLayer()
+        layer.pixels[row][col] = currentColor
+        invalidate()
     }
 
     // Public API

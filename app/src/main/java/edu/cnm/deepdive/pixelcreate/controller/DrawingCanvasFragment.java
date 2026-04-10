@@ -53,9 +53,9 @@ public class DrawingCanvasFragment extends Fragment {
         Color.YELLOW, Color.CYAN, Color.MAGENTA, 0xFFFF8800, 0xFFAA66CC
     };
 
-    colorAdapter = new ColorSwatchAdapter(colors, selectedColor ->
-        binding.pixelCanvas.setColor(selectedColor)
-    );
+    colorAdapter = new ColorSwatchAdapter(colors, color -> {
+      binding.pixelCanvas.setColor(color);
+    });
 
     binding.colorPalette.setAdapter(colorAdapter);
   }
@@ -70,8 +70,6 @@ public class DrawingCanvasFragment extends Fragment {
       binding.pixelCanvas.redo();
       layerAdapter.notifyDataSetChanged();
     });
-
-    // TODO: Add brush, eraser, fill, eyedropper tool wiring
   }
 
   @Override

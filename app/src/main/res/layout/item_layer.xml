@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="48dp"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="horizontal"
   android:gravity="center_vertical"
   android:padding="6dp"
@@ -12,7 +13,7 @@
     android:layout_height="32dp"
     android:background="@android:color/transparent"
     android:src="@drawable/ic_eye"
-    android:tint="#FFFFFF"/>
+    app:tint="#FFFFFF"/>
 
   <TextView
     android:id="@+id/layerName"
@@ -30,7 +31,7 @@
     android:layout_height="32dp"
     android:background="@android:color/transparent"
     android:src="@drawable/ic_arrow_up"
-    android:tint="#FFFFFF"/>
+    app:tint="#FFFFFF"/>
 
   <ImageButton
     android:id="@+id/moveDownButton"
@@ -38,7 +39,7 @@
     android:layout_height="32dp"
     android:background="@android:color/transparent"
     android:src="@drawable/ic_arrow_down"
-    android:tint="#FFFFFF"/>
+    app:tint="#FFFFFF"/>
 
   <ImageButton
     android:id="@+id/duplicateButton"
@@ -46,7 +47,7 @@
     android:layout_height="32dp"
     android:background="@android:color/transparent"
     android:src="@drawable/ic_duplicate"
-    android:tint="#FFFFFF"/>
+    app:tint="#FFFFFF"/>
 
   <ImageButton
     android:id="@+id/deleteButton"
@@ -54,6 +55,6 @@
     android:layout_height="32dp"
     android:background="@android:color/transparent"
     android:src="@drawable/ic_delete"
-    android:tint="#FFFFFF"/>
+    app:tint="#FFFFFF"/>
 
 </LinearLayout>

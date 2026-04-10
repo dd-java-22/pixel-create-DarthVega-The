@@ -1,6 +1,5 @@
 package edu.cnm.deepdive.pixelcreate.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import edu.cnm.deepdive.pixelcreate.R
 
 class ColorSwatchAdapter(
     private val colors: IntArray,
-    private val onColorSelected: (Int) -> Unit
+    private val listener: ColorSelectListener
 ) : RecyclerView.Adapter<ColorSwatchAdapter.ColorViewHolder>() {
 
     private var selectedIndex = 0
@@ -26,17 +25,23 @@ class ColorSwatchAdapter(
     override fun onBindViewHolder(holder: ColorViewHolder, position: Int) {
         val color = colors[position]
 
+        // Set swatch color
         holder.swatch.setBackgroundColor(color)
 
-        // Highlight selected color
+        // Highlight selected swatch
         holder.border.visibility =
             if (position == selectedIndex) View.VISIBLE else View.INVISIBLE
 
+        // Handle click
         holder.itemView.setOnClickListener {
-            selectedIndex = position
-            notifyDataSetChanged()
-            onColorSelected(color)
+            val pos = holder.bindingAdapterPosition
+            if (pos != RecyclerView.NO_POSITION) {
+                selectedIndex = pos
+                notifyDataSetChanged()
+                listener.onColorSelected(colors[pos])
+            }
         }
+
     }
 
     inner class ColorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
