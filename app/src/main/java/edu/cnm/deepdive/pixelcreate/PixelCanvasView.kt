@@ -5,12 +5,15 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
+import com.google.gson.Gson
 import kotlin.math.floor
+import kotlin.math.min
 
 class PixelCanvasView @JvmOverloads constructor(
     context: Context,
@@ -57,8 +60,15 @@ class PixelCanvasView @JvmOverloads constructor(
         canvas.translate(offsetX, offsetY)
         canvas.scale(scaleFactor, scaleFactor)
 
-        val cellWidth = width / gridSize.toFloat()
-        val cellHeight = height / gridSize.toFloat()
+        val cellSize = min(width, height) / gridSize.toFloat()
+        val cellWidth = cellSize
+        val cellHeight = cellSize
+
+        val offsetXCenter = (width - gridSize * cellSize) / 2
+        val offsetYCenter = (height - gridSize * cellSize) / 2
+
+        canvas.translate(offsetXCenter, offsetYCenter)
+
 
         // Draw all visible layers, bottom to top
         for (layer in layerManager.getLayers()) {
@@ -118,14 +128,18 @@ class PixelCanvasView @JvmOverloads constructor(
     }
 
     private fun handleToolAction(event: MotionEvent) {
-        val cellWidth = width / gridSize.toFloat()
-        val cellHeight = height / gridSize.toFloat()
+        val cellSize = min(width, height) / gridSize.toFloat()
 
-        val canvasX = (event.x - offsetX) / scaleFactor
-        val canvasY = (event.y - offsetY) / scaleFactor
+        val offsetXCenter = (width - gridSize * cellSize) / 2
+        val offsetYCenter = (height - gridSize * cellSize) / 2
 
-        val col = floor(canvasX / cellWidth).toInt()
-        val row = floor(canvasY / cellHeight).toInt()
+// Reverse the transforms in the correct order
+        val canvasX = (event.x - offsetX) / scaleFactor - offsetXCenter
+        val canvasY = (event.y - offsetY) / scaleFactor - offsetYCenter
+
+        val col = floor(canvasX / cellSize).toInt()
+        val row = floor(canvasY / cellSize).toInt()
+
 
         if (row in 0 until gridSize && col in 0 until gridSize) {
             when (currentTool) {
@@ -295,6 +309,102 @@ class PixelCanvasView @JvmOverloads constructor(
 
         return bitmap
     }
+
+    fun saveProjectToJson(): String {
+        val layerDataList = layerManager.getLayers().map { layer ->
+            LayerData(
+                pixels = layer.pixels.map { it.toList() },
+                visible = layer.visible,
+                opacity = layer.opacity
+            )
+        }
+
+        val projectData = ProjectData(
+            gridSize = gridSize,
+            layers = layerDataList,
+            activeLayerIndex = layerManager.activeLayerIndex
+        )
+
+        return Gson().toJson(projectData)
+    }
+
+    fun loadProjectFromJson(json: String) {
+        try {
+            val projectData = Gson().fromJson(json, ProjectData::class.java)
+
+            if (projectData.gridSize != gridSize) {
+                throw IllegalArgumentException("Grid size mismatch")
+            }
+
+            // Clear existing layers
+            while (layerManager.getLayers().size > 1) {
+                layerManager.deleteLayer(0)
+            }
+            layerManager.clearActiveLayer()
+
+            // Load all layers
+            var firstLayer = true
+            for (layerData in projectData.layers) {
+                if (firstLayer) {
+                    // Use existing first layer
+                    val layer = layerManager.getActiveLayer()
+                    layer.visible = layerData.visible
+                    layer.opacity = layerData.opacity
+                    for (row in 0 until gridSize) {
+                        for (col in 0 until gridSize) {
+                            layer.pixels[row][col] = layerData.pixels[row][col]
+                        }
+                    }
+                    firstLayer = false
+                } else {
+                    // Add new layer
+                    layerManager.addLayer()
+                    val layer = layerManager.getActiveLayer()
+                    layer.visible = layerData.visible
+                    layer.opacity = layerData.opacity
+                    for (row in 0 until gridSize) {
+                        for (col in 0 until gridSize) {
+                            layer.pixels[row][col] = layerData.pixels[row][col]
+                        }
+                    }
+                }
+            }
+
+            // Set the active layer index
+            layerManager.setActiveLayer(projectData.activeLayerIndex.coerceIn(0, layerManager.getLayers().lastIndex))
+
+            invalidate()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
+    }
+
+    fun saveToUri(uri: Uri) {
+        try {
+            val json = saveProjectToJson()
+            context.contentResolver.openOutputStream(uri)?.use { stream ->
+                stream.write(json.toByteArray())
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun loadFromUri(uri: Uri) {
+        try {
+            val json = context.contentResolver.openInputStream(uri)?.use { stream ->
+                stream.bufferedReader().use { it.readText() }
+            }
+            if (json != null) {
+                loadProjectFromJson(json)
+                invalidate()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 
     // Gesture listeners
 

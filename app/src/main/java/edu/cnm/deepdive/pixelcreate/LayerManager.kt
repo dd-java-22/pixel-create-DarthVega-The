@@ -2,19 +2,31 @@ package edu.cnm.deepdive.pixelcreate
 
 import android.graphics.Color
 
-class LayerManager(private val gridSize: Int) {
+class LayerManager(val gridSize: Int) {  // <-- gridSize is now val so serializer can read it
 
     private val layers = mutableListOf<PixelLayer>()
     var activeLayerIndex: Int = 0
         private set
 
     init {
-        addLayer() // start with one layer
+        addLayer()
     }
 
     fun addLayer() {
         layers.add(PixelLayer(gridSize))
         activeLayerIndex = layers.lastIndex
+    }
+
+    // NEW: Add an existing layer (used by ProjectSerializer)
+    fun addExistingLayer(layer: PixelLayer) {
+        layers.add(layer)
+        activeLayerIndex = layers.lastIndex
+    }
+
+    // NEW: Clear all layers (used before loading)
+    fun clearAllLayers() {
+        layers.clear()
+        activeLayerIndex = 0
     }
 
     fun deleteLayer(index: Int) {
@@ -89,4 +101,13 @@ class LayerManager(private val gridSize: Int) {
     fun redoActiveLayer() {
         getActiveLayer().redo()
     }
+
+    fun replaceWith(other: LayerManager) {
+        this.clearAllLayers()
+        for (layer in other.getLayers()) {
+            this.addExistingLayer(layer)
+        }
+        this.setActiveLayer(other.activeLayerIndex)
+    }
+
 }

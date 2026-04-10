@@ -5,17 +5,26 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <!-- Top toolbar -->
+  <!-- 1/8 screen height guideline -->
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/topGuide"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.125" />
+
+  <!-- Top toolbar (now moved down) -->
   <LinearLayout
     android:id="@+id/topBar"
     android:layout_width="0dp"
     android:layout_height="48dp"
     android:orientation="horizontal"
     android:background="#222"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/topGuide"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent">
 
+    <!-- toolbar buttons unchanged -->
     <ImageButton
       android:id="@+id/undoButton"
       android:layout_width="48dp"
@@ -70,6 +79,8 @@
       android:src="@drawable/ic_eyedropper"
       app:tint="#fff"/>
 
+
+
     <View
       android:layout_width="1dp"
       android:layout_height="match_parent"
@@ -101,7 +112,7 @@
     android:layout_height="0dp"
     android:orientation="horizontal"
     app:layout_constraintTop_toBottomOf="@id/topBar"
-    app:layout_constraintBottom_toTopOf="@id/layerList"
+    app:layout_constraintBottom_toTopOf="@id/bottomPanel"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent">
 
@@ -122,14 +133,55 @@
 
   </LinearLayout>
 
-  <!-- Layer panel -->
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/layerList"
+  <!-- Bottom panel with save/load and layers -->
+  <LinearLayout
+    android:id="@+id/bottomPanel"
     android:layout_width="0dp"
     android:layout_height="120dp"
+    android:orientation="horizontal"
     android:background="#222"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"/>
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <!-- Save/Load buttons on the left -->
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:gravity="center"
+      android:padding="8dp">
+
+      <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_save"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:tint="#fff"
+        android:contentDescription="Save"/>
+
+      <ImageButton
+        android:id="@+id/loadButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_load"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:tint="#fff"
+        android:contentDescription="Load"/>
+
+    </LinearLayout>
+
+    <!-- Layer panel on the right -->
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/layerList"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:background="#222"/>
+
+  </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

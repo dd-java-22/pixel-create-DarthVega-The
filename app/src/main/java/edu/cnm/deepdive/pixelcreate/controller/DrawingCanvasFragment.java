@@ -1,6 +1,8 @@
 package edu.cnm.deepdive.pixelcreate.controller;
 
+import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,6 +34,9 @@ public class DrawingCanvasFragment extends Fragment {
   private FragmentCanvasBinding binding;
   private LayerAdapter layerAdapter;
   private ColorSwatchAdapter colorAdapter;
+  private ActivityResultLauncher<Intent> saveLauncher;
+  private ActivityResultLauncher<Intent> loadLauncher;
+
 
   @Nullable
   @Override
@@ -46,10 +53,89 @@ public class DrawingCanvasFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    setupLayerPanel();
-    setupColorPalette();
-    setupToolbar();
+    // -----------------------------
+    // File Picker Launchers
+    // -----------------------------
+    saveLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        result -> {
+          if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            Uri uri = result.getData().getData();
+            if (uri != null) {
+              binding.pixelCanvas.saveToUri(uri);
+            }
+          }
+        }
+    );
+
+    loadLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        result -> {
+          if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            Uri uri = result.getData().getData();
+            if (uri != null) {
+              binding.pixelCanvas.loadFromUri(uri);
+              layerAdapter.notifyDataSetChanged();
+            }
+          }
+        }
+    );
+
+    // -----------------------------
+    // Layer Panel Setup
+    // -----------------------------
+    layerAdapter = new LayerAdapter(binding.pixelCanvas);
+    binding.layerList.setAdapter(layerAdapter);
+
+    // -----------------------------
+    // Color Palette Setup
+    // -----------------------------
+    int[] colors = new int[]{
+        Color.BLACK, Color.WHITE, Color.RED, Color.GREEN, Color.BLUE,
+        Color.YELLOW, Color.CYAN, Color.MAGENTA, 0xFFFF8800, 0xFFAA66CC
+    };
+
+    colorAdapter = new ColorSwatchAdapter(colors, color -> {
+      binding.pixelCanvas.setColor(color);
+    });
+
+    binding.colorPalette.setAdapter(colorAdapter);
+
+    // -----------------------------
+    // Undo / Redo Buttons
+    // -----------------------------
+    binding.undoButton.setOnClickListener(v -> {
+      binding.pixelCanvas.undo();
+      layerAdapter.notifyDataSetChanged();
+    });
+
+    binding.redoButton.setOnClickListener(v -> {
+      binding.pixelCanvas.redo();
+      layerAdapter.notifyDataSetChanged();
+    });
+
+    // -----------------------------
+    // Save Button
+    // -----------------------------
+    binding.saveButton.setOnClickListener(v -> {
+      Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+      intent.addCategory(Intent.CATEGORY_OPENABLE);
+      intent.setType("application/octet-stream");
+      intent.putExtra(Intent.EXTRA_TITLE, "project.pcp");
+      saveLauncher.launch(intent);
+    });
+
+    // -----------------------------
+    // Load Button
+    // -----------------------------
+    binding.loadButton.setOnClickListener(v -> {
+      Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+      intent.addCategory(Intent.CATEGORY_OPENABLE);
+      intent.setType("*/*");
+      loadLauncher.launch(intent);
+    });
   }
+
 
   private void setupLayerPanel() {
     layerAdapter = new LayerAdapter(binding.pixelCanvas);
