@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="48dp"
+  android:layout_height="48dp"
+  android:padding="4dp">
+
+  <!-- Border highlight -->
+  <View
+    android:id="@+id/color_border"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/color_swatch_border"
+    android:visibility="invisible"/>
+
+  <!-- Actual color -->
+  <View
+    android:id="@+id/color_swatch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</FrameLayout>

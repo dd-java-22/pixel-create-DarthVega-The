@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <!-- Top toolbar -->
+  <LinearLayout
+    android:id="@+id/topBar"
+    android:layout_width="0dp"
+    android:layout_height="48dp"
+    android:orientation="horizontal"
+    android:background="#222"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <ImageButton
+      android:id="@+id/undoButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_undo"
+      app:tint="#fff"/>
+
+    <ImageButton
+      android:id="@+id/redoButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_redo"
+      app:tint="#fff"/>
+
+    <!-- Add more tool buttons here -->
+
+  </LinearLayout>
+
+  <!-- Main content area -->
+  <LinearLayout
+    android:id="@+id/mainContent"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:orientation="horizontal"
+    app:layout_constraintTop_toBottomOf="@id/topBar"
+    app:layout_constraintBottom_toTopOf="@id/layerList"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <!-- Color palette -->
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/colorPalette"
+      android:layout_width="64dp"
+      android:layout_height="match_parent"
+      android:background="#111"/>
+
+    <!-- Canvas -->
+    <edu.cnm.deepdive.pixelcreate.PixelCanvasView
+      android:id="@+id/pixelCanvas"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:background="#000"/>
+
+  </LinearLayout>
+
+  <!-- Layer panel -->
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/layerList"
+    android:layout_width="0dp"
+    android:layout_height="120dp"
+    android:background="#222"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
