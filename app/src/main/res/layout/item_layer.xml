@@ -46,7 +46,8 @@
     android:layout_width="32dp"
     android:layout_height="32dp"
     android:background="@android:color/transparent"
-    android:src="@drawable/ic_duplicate"
+    android:src="@drawable/ic_add"
+    android:contentDescription="Add new layer"
     app:tint="#FFFFFF"/>
 
   <ImageButton

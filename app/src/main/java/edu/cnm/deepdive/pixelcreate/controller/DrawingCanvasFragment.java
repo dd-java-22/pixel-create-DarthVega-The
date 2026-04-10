@@ -85,6 +85,7 @@ public class DrawingCanvasFragment extends Fragment {
     // Layer Panel Setup
     // -----------------------------
     layerAdapter = new LayerAdapter(binding.pixelCanvas);
+    binding.layerList.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(requireContext()));
     binding.layerList.setAdapter(layerAdapter);
 
     // -----------------------------
@@ -99,6 +100,7 @@ public class DrawingCanvasFragment extends Fragment {
       binding.pixelCanvas.setColor(color);
     });
 
+    binding.colorPalette.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(requireContext()));
     binding.colorPalette.setAdapter(colorAdapter);
 
     // -----------------------------

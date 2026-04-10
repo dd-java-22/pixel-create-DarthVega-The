@@ -50,9 +50,9 @@ class LayerAdapter(
             notifyItemChanged(position)
         }
 
-        // Duplicate layer
+        // Add new layer (changed from duplicate)
         holder.duplicateButton.setOnClickListener {
-            canvasView.duplicateLayer(position)
+            canvasView.addLayer()
             notifyDataSetChanged()
         }
 
