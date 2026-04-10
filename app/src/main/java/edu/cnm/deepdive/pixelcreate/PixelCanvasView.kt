@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.pixelcreate
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -34,7 +35,7 @@ class PixelCanvasView @JvmOverloads constructor(
     var currentColor: Int = Color.BLACK
 
     // Tools
-    enum class Tool { PENCIL }
+    enum class Tool { PENCIL, ERASER, FILL_BUCKET, EYEDROPPER }
     var currentTool: Tool = Tool.PENCIL
 
     // Zoom & pan
@@ -44,6 +45,9 @@ class PixelCanvasView @JvmOverloads constructor(
 
     private val scaleDetector = ScaleGestureDetector(context, ScaleListener())
     private val panDetector = GestureDetector(context, PanListener())
+
+    // Track if we saved state for this stroke
+    private var savedStateForStroke = false
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -97,34 +101,90 @@ class PixelCanvasView @JvmOverloads constructor(
         // Two fingers = zoom/pan only
         if (event.pointerCount > 1) return true
 
-        // One finger = draw
-        if (event.action == MotionEvent.ACTION_DOWN ||
-            event.action == MotionEvent.ACTION_MOVE
-        ) {
-            val cellWidth = width / gridSize.toFloat()
-            val cellHeight = height / gridSize.toFloat()
-
-            val canvasX = (event.x - offsetX) / scaleFactor
-            val canvasY = (event.y - offsetY) / scaleFactor
-
-            val col = floor(canvasX / cellWidth).toInt()
-            val row = floor(canvasY / cellHeight).toInt()
-
-            if (row in 0 until gridSize && col in 0 until gridSize) {
-                when (currentTool) {
-                    Tool.PENCIL -> drawPixel(row, col)
-                }
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                savedStateForStroke = false
+                handleToolAction(event)
+            }
+            MotionEvent.ACTION_MOVE -> {
+                handleToolAction(event)
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                savedStateForStroke = false
             }
         }
 
         return true
     }
 
+    private fun handleToolAction(event: MotionEvent) {
+        val cellWidth = width / gridSize.toFloat()
+        val cellHeight = height / gridSize.toFloat()
+
+        val canvasX = (event.x - offsetX) / scaleFactor
+        val canvasY = (event.y - offsetY) / scaleFactor
+
+        val col = floor(canvasX / cellWidth).toInt()
+        val row = floor(canvasY / cellHeight).toInt()
+
+        if (row in 0 until gridSize && col in 0 until gridSize) {
+            when (currentTool) {
+                Tool.PENCIL -> drawPixel(row, col)
+                Tool.ERASER -> erasePixel(row, col)
+                Tool.FILL_BUCKET -> fillBucket(row, col)
+                Tool.EYEDROPPER -> pickColor(row, col)
+            }
+        }
+    }
+
     private fun drawPixel(row: Int, col: Int) {
+        if (!savedStateForStroke) {
+            layerManager.saveStateForActiveLayer()
+            savedStateForStroke = true
+        }
         val layer = layerManager.getActiveLayer()
-        layerManager.saveStateForActiveLayer()
         layer.pixels[row][col] = currentColor
         invalidate()
+    }
+
+    private fun erasePixel(row: Int, col: Int) {
+        if (!savedStateForStroke) {
+            layerManager.saveStateForActiveLayer()
+            savedStateForStroke = true
+        }
+        val layer = layerManager.getActiveLayer()
+        layer.pixels[row][col] = Color.TRANSPARENT
+        invalidate()
+    }
+
+    private fun fillBucket(row: Int, col: Int) {
+        layerManager.saveStateForActiveLayer()
+        val layer = layerManager.getActiveLayer()
+        val targetColor = layer.pixels[row][col]
+        if (targetColor == currentColor) return
+
+        floodFill(layer, row, col, targetColor, currentColor)
+        invalidate()
+    }
+
+    private fun floodFill(layer: PixelLayer, row: Int, col: Int, targetColor: Int, fillColor: Int) {
+        if (row !in 0 until gridSize || col !in 0 until gridSize) return
+        if (layer.pixels[row][col] != targetColor) return
+
+        layer.pixels[row][col] = fillColor
+
+        floodFill(layer, row + 1, col, targetColor, fillColor)
+        floodFill(layer, row - 1, col, targetColor, fillColor)
+        floodFill(layer, row, col + 1, targetColor, fillColor)
+        floodFill(layer, row, col - 1, targetColor, fillColor)
+    }
+
+    private fun pickColor(row: Int, col: Int) {
+        val layer = layerManager.getActiveLayer()
+        val pickedColor = layer.pixels[row][col]
+        if (pickedColor != Color.TRANSPARENT) {
+            currentColor = pickedColor
+        }
     }
 
     // Public API
@@ -186,6 +246,55 @@ class PixelCanvasView @JvmOverloads constructor(
     fun getLayers(): List<PixelLayer> = layerManager.getLayers()
 
     fun getActiveLayerIndex(): Int = layerManager.activeLayerIndex
+
+    fun resetZoom() {
+        scaleFactor = 1f
+        offsetX = 0f
+        offsetY = 0f
+        invalidate()
+    }
+
+    fun setTool(tool: Tool) {
+        currentTool = tool
+    }
+
+    fun exportToBitmap(): Bitmap {
+        val bitmap = Bitmap.createBitmap(gridSize, gridSize, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+
+        // Fill with transparent background
+        canvas.drawColor(Color.TRANSPARENT)
+
+        val paint = Paint().apply {
+            style = Paint.Style.FILL
+            isAntiAlias = false
+        }
+
+        // Draw all visible layers
+        for (layer in layerManager.getLayers()) {
+            if (!layer.visible) continue
+
+            paint.alpha = (layer.opacity * 255).toInt()
+
+            for (row in 0 until gridSize) {
+                for (col in 0 until gridSize) {
+                    val color = layer.pixels[row][col]
+                    if (color != Color.TRANSPARENT) {
+                        paint.color = color
+                        canvas.drawRect(
+                            col.toFloat(),
+                            row.toFloat(),
+                            (col + 1).toFloat(),
+                            (row + 1).toFloat(),
+                            paint
+                        )
+                    }
+                }
+            }
+        }
+
+        return bitmap
+    }
 
     // Gesture listeners
 

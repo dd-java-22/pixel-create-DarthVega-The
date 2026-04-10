@@ -32,7 +32,65 @@
       android:src="@drawable/ic_redo"
       app:tint="#fff"/>
 
-    <!-- Add more tool buttons here -->
+    <View
+      android:layout_width="1dp"
+      android:layout_height="match_parent"
+      android:layout_marginVertical="8dp"
+      android:background="#444"/>
+
+    <ImageButton
+      android:id="@+id/pencilButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_pencil"
+      app:tint="#fff"/>
+
+    <ImageButton
+      android:id="@+id/eraserButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_eraser"
+      app:tint="#fff"/>
+
+    <ImageButton
+      android:id="@+id/fillBucketButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_fill_bucket"
+      app:tint="#fff"/>
+
+    <ImageButton
+      android:id="@+id/eyedropperButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_eyedropper"
+      app:tint="#fff"/>
+
+    <View
+      android:layout_width="1dp"
+      android:layout_height="match_parent"
+      android:layout_marginVertical="8dp"
+      android:background="#444"/>
+
+    <ImageButton
+      android:id="@+id/resetZoomButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_reset_zoom"
+      app:tint="#fff"/>
+
+    <ImageButton
+      android:id="@+id/exportButton"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_export"
+      app:tint="#fff"/>
 
   </LinearLayout>
 
