@@ -29,30 +29,6 @@ This guide provides instructions for using the Pixel Create pixel art applicatio
 
 ---
 
-## Project Gallery
-
-The Project Gallery is your home screen where you can view, create, and manage your pixel art projects.
-
-### Creating a New Project (Not Yet Implemented)
-
-1. Tap the **"New Project"** button in the gallery
-2. The app will navigate to the drawing canvas
-3. *Note: Project creation with custom dimensions is planned but not yet implemented*
-
-### Opening an Existing Project (Not Yet Implemented)
-
-1. Projects from the database will appear as thumbnails in the gallery
-2. Tap a project to open it in the drawing canvas
-3. *Note: Project loading functionality is planned but not yet implemented*
-
-### Managing Projects (Not Yet Implemented)
-
-- **Rename**: Planned for future release
-- **Duplicate**: Planned for future release
-- **Delete**: Planned for future release
-
----
-
 ## Drawing Canvas
 
 The canvas is where you create and edit your pixel art.
@@ -61,10 +37,11 @@ The canvas is where you create and edit your pixel art.
 
 The drawing canvas includes:
 
-- **Top Toolbar**: Undo, Redo, Save, Load buttons
+- **Top Toolbar**: Undo, Redo, draw, erase, fill, eyedropper, reset zoom, and save buttons.
 - **Canvas Area**: Main drawing surface with zoom and pan support
 - **Color Palette**: Bottom horizontal scroll view with color swatches
 - **Layer Panel**: Bottom panel for layer management
+- **Save/Load**: Two buttons for saving and loading projects.
 
 ### Basic Drawing (Partially Implemented)
 
@@ -91,11 +68,10 @@ The drawing canvas includes:
 - **Pan**: Drag with two fingers to move the canvas
 - **Reset Zoom**: Tap the reset zoom button to return to default scale
 
-### Undo and Redo (Not Yet Implemented)
+### Undo and Redo 
 
 - **Undo**: Tap the undo button (↶ icon) to reverse the last action
 - **Redo**: Tap the redo button (↷ icon) to reapply an undone action
-- *Note: Undo/redo functionality is planned but not yet implemented*
 
 ### Saving Your Work (Partially Implemented)
 
