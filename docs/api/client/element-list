@@ -1,0 +1,6 @@
+edu.cnm.deepdive.pixelcreate
+edu.cnm.deepdive.pixelcreate.controller
+edu.cnm.deepdive.pixelcreate.model.dao
+edu.cnm.deepdive.pixelcreate.model.entity
+edu.cnm.deepdive.pixelcreate.service
+edu.cnm.deepdive.pixelcreate.service.repository
