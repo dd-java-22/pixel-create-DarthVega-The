@@ -1,151 +1,206 @@
-### 🎨 Pixel Create — User Guide
-- PixelCreate is a lightweight, layer‑based pixel art editor designed for precision drawing, animation planning, and project‑based editing. This guide explains how to navigate the interface, draw on the canvas, manage layers, and save or load project files.
+---
+title: User Instructions
+description: "Guide for using the Pixel Create application"
+order: 65
+---
 
-### 🧭 Interface Overview
-- PixelCreate is divided into four main areas:
+## User Instructions
 
-- Top Toolbar — Undo, Redo, Pencil, Eraser, Fill, Eyedropper, Reset Zoom, Export
+This guide provides instructions for using the Pixel Create pixel art application. It assumes you are familiar with standard Android navigation (back button, overflow menus) and focuses on app-specific operations.
 
-- Left Sidebar — Color Palette + Save/Load buttons
+**Note**: The application is currently in active development. Many features described in this guide are planned but not yet fully implemented. See the [Current State](current-state.md) document for implementation status.
 
-- Main Canvas — Zoomable, pannable pixel grid
+---
 
-- Bottom Layer Panel — Add, delete, reorder, duplicate, toggle visibility, and select layers
+## Getting Started
 
-### ✏️ Drawing on the Canvas
-- Pencil Tool:
-Tap the Pencil icon in the top toolbar.
+### First Launch - Authentication
 
-- Select a color from the color palette.
+1. **Sign In with Google**
+   - On first launch, you'll see the login screen
+   - Tap the **"Sign in with Google"** button
+   - Select your Google account from the system picker
+   - Grant permissions when prompted
+   - You'll be automatically redirected to the Project Gallery
 
-- Tap or drag on the canvas to draw.
+2. **Automatic Sign-In**
+   - After the first successful sign-in, the app will remember your account
+   - Future launches will skip the login screen and go directly to your gallery
 
-- Each pixel is placed exactly where your finger touches.
+---
 
-- Zoom & Pan:
-Pinch to zoom in or out.
+## Project Gallery
 
-- Drag with one finger to pan the canvas.
+The Project Gallery is your home screen where you can view, create, and manage your pixel art projects.
 
-- Tap Reset Zoom to return to the default view.
+### Creating a New Project (Not Yet Implemented)
 
-### 🎨 Color Selection
-- The color palette appears on the left side of the screen.
+1. Tap the **"New Project"** button in the gallery
+2. The app will navigate to the drawing canvas
+3. *Note: Project creation with custom dimensions is planned but not yet implemented*
 
-- Tap any swatch to set the active drawing color.
+### Opening an Existing Project (Not Yet Implemented)
 
-- The selected color is applied immediately to the Pencil tool.
+1. Projects from the database will appear as thumbnails in the gallery
+2. Tap a project to open it in the drawing canvas
+3. *Note: Project loading functionality is planned but not yet implemented*
 
-### 📚 Layer Management
-- The layer panel at the bottom of the screen allows full control over your artwork’s structure.
+### Managing Projects (Not Yet Implemented)
 
-#### Available Layer Actions:
-- Select Layer — Tap a layer to make it active.
+- **Rename**: Planned for future release
+- **Duplicate**: Planned for future release
+- **Delete**: Planned for future release
 
-- Toggle Visibility — Show or hide a layer.
+---
 
-- Duplicate Layer — Creates an exact copy.
+## Drawing Canvas
 
-- Delete Layer — Removes the selected layer.
+The canvas is where you create and edit your pixel art.
 
-- Move Layer Up/Down — Reorder layers.
+### Interface Overview
 
-- Opacity Slider — Adjust transparency.
+The drawing canvas includes:
 
-- Each layer maintains its own pixel data and undo/redo history.
+- **Top Toolbar**: Undo, Redo, Save, Load buttons
+- **Canvas Area**: Main drawing surface with zoom and pan support
+- **Color Palette**: Bottom horizontal scroll view with color swatches
+- **Layer Panel**: Bottom panel for layer management
 
-### ↩️ Undo & Redo
-- Tap Undo to revert the last change on the active layer.
+### Basic Drawing (Partially Implemented)
 
-- Tap Redo to reapply an undone change.
+1. **Select a Tool**:
+   - *Note: Drawing tools are planned but not yet fully functional*
+   - **Pencil**: Draw individual pixels
+   - **Eraser**: Remove pixels (makes them transparent)
+   - **Fill Bucket**: Fill connected areas with the selected color
+   - **Color Picker**: Sample a color from the canvas
 
-- Undo/redo is tracked per layer, not globally.
+2. **Select a Color**:
+   - Tap any color in the palette at the bottom
+   - The selected color is highlighted
+   - Use the color picker tool to sample colors from your artwork
 
-### 💾 Saving Projects
-#### PixelCreate uses a custom .pcp (PixelCreate Project) format that preserves:
+3. **Draw**:
+   - **Tap**: Draw a single pixel
+   - **Drag**: Draw continuously as you move your finger
+   - *Note: Drawing functionality is currently under development*
 
-- All layers
+### Canvas Navigation
 
-- Pixel data
+- **Zoom In/Out**: Pinch gesture (two-finger pinch)
+- **Pan**: Drag with two fingers to move the canvas
+- **Reset Zoom**: Tap the reset zoom button to return to default scale
 
-- Visibility
+### Undo and Redo (Not Yet Implemented)
 
-- Opacity
+- **Undo**: Tap the undo button (↶ icon) to reverse the last action
+- **Redo**: Tap the redo button (↷ icon) to reapply an undone action
+- *Note: Undo/redo functionality is planned but not yet implemented*
 
-- Active layer index
+### Saving Your Work (Partially Implemented)
 
-- To Save a Project:
-Tap the Save button under the color palette.
+- **Save Button**: Tap the save button (💾 icon) to save
+- *Note: Save functionality is under development; pixels may not persist correctly*
 
-- The system file picker will open.
+---
 
-- Choose a location and filename (e.g., my_art.pcp).
+## Layers (Partially Implemented)
 
-- PixelCreate writes the full project file.
+Layers allow you to separate elements of your artwork for easier editing.
 
-### 📂 Loading Projects
-#### To Load a Project
-- Tap the Load button under the color palette.
+### Managing Layers
 
-- Select a .pcp file from your device.
+1. **View Layers**: The layer panel appears at the bottom of the canvas
+2. **Select Layer**: Tap a layer to make it active
+3. **Toggle Visibility**: Tap the eye icon to show/hide a layer
+4. **Add Layer**: Tap the + button to create a new layer
+5. **Delete Layer**: Long-press a layer and select delete
+6. **Reorder Layers**: Use up/down arrows to change layer order
 
-#### PixelCreate restores:
+*Note: Layer functionality is partially implemented; some features may not work as expected*
 
-- All layers
+---
 
-- Pixel colors
+## Color Palettes (Partially Implemented)
 
-- Active layer
+Palettes help you maintain consistent colors across your artwork.
 
-- The canvas updates instantly.
+### Using Palettes
 
-### 🖼️ Exporting Artwork (Flattened PNG)
-- Tap the Export button in the top toolbar.
+1. **Default Palette**: A color palette is loaded by default in the drawing canvas
+2. **Select Color**: Tap any color swatch to set it as the active drawing color
 
-- PixelCreate will generate a flattened PNG of all visible layers.
+### Creating Custom Palettes (Not Yet Implemented)
 
-- This file can be shared, posted, or used in other apps.
+1. Navigate to **Project Gallery** → Tap **"Palette Management"** button
+2. *Note: Palette creation and management UI exists but is not yet functional*
 
-### 🛠️ Tools (Current & Upcoming)
-#### Available Tools
-- Pencil (active)
+---
 
-- Reset Zoom
+## Settings
 
-- Export PNG
+Access settings from the Project Gallery overflow menu (⋮).
 
-### Coming Soon
+### Available Settings
 
-- Brush Sizes
+#### Canvas Settings
 
-- Animation Timeline
+- **Default Canvas Width**: Width in pixels for new projects (default: 32)
+- **Default Canvas Height**: Height in pixels for new projects (default: 32)
+- **Show Grid**: Toggle grid lines on the canvas for easier pixel alignment
 
-- Custom Color Picker
+#### Appearance Settings
 
-### 📁 Project File Format (.pcp)
-#### PixelCreate uses a custom binary format that stores:
+- **Theme**:
+  - **Light**: Light background with dark text
+  - **Dark**: Dark background with light text
+  - **System Default**: Follows device theme setting
 
-- Grid size
+*Note: Settings are saved but not yet utilized in the app's behavior*
 
-- Layer count
+---
 
-- Active layer index
+## Exporting Your Artwork (Not Yet Implemented)
 
-- Per‑layer:
+- Export functionality is planned but not yet implemented
+- Future versions will support PNG export to device gallery
 
-- Visibility
+---
 
-- Opacity
+## Signing Out
 
-- Pixel colors (ARGB)
+1. Navigate to the **Project Gallery**
+2. Tap the overflow menu (⋮) in the top-right
+3. Select **"Sign Out"**
+4. Confirm sign-out
+5. You'll be returned to the login screen
 
-This ensures projects load exactly as they were saved.
+**Note**: All projects are stored locally on your device. Signing out does not delete your projects.
 
-### 🧩 Tips for Best Results
-- Zoom in for precise pixel placement.
+---
 
-- Use multiple layers to separate line art, shading, and effects.
+## Known Limitations
 
-- Save often when working on large projects.
+Please refer to the [Current State](current-state.md) document for a comprehensive list of:
 
-- Export PNGs for sharing or posting online.
+- Unimplemented features
+- Known bugs
+- Planned enhancements
+
+---
+
+## Getting Help
+
+If you encounter issues:
+
+1. Check the [Current State](current-state.md) document for known bugs and limitations
+2. Review the [Technical Requirements](technical-requirements.md) for compatibility information
+3. Report bugs via the project's GitHub Issues page
+
+---
+
+## Related Documentation
+
+- [Build Instructions](build-instructions.md) - How to build the app from source
+- [Technical Requirements](technical-requirements.md) - System requirements and dependencies
+- [Current State](current-state.md) - Implementation status and known issues
