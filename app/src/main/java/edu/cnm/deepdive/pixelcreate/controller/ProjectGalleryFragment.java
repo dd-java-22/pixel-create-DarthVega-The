@@ -1,18 +1,3 @@
-/*
- *  Copyright 2026 CNM Ingenuity, Inc.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
 package edu.cnm.deepdive.pixelcreate.controller;
 
 import android.os.Bundle;
@@ -22,16 +7,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.pixelcreate.R;
 import edu.cnm.deepdive.pixelcreate.databinding.FragmentProjectGalleryBinding;
@@ -49,19 +38,24 @@ public class ProjectGalleryFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     // Configure Google Sign In client for sign out
     GoogleSignInOptions options = new GoogleSignInOptions.Builder()
         .requestEmail()
         .requestId()
         .requestProfile()
         .build();
+
     client = GoogleSignIn.getClient(requireContext(), options);
   }
 
   @Nullable
   @Override
-  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-      @Nullable Bundle savedInstanceState) {
+  public View onCreateView(
+      @NonNull LayoutInflater inflater,
+      @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState
+  ) {
     binding = FragmentProjectGalleryBinding.inflate(inflater, container, false);
     return binding.getRoot();
   }
@@ -79,6 +73,9 @@ public class ProjectGalleryFragment extends Fragment {
     binding = null;
   }
 
+  // ------------------------------------------------------------
+  // Menu Setup
+  // ------------------------------------------------------------
   private void setupMenu() {
     requireActivity().addMenuProvider(new MenuProvider() {
       @Override
@@ -90,28 +87,63 @@ public class ProjectGalleryFragment extends Fragment {
       public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
         boolean handled;
         int itemId = menuItem.getItemId();
+
         if (itemId == R.id.sign_out) {
           signOut();
           handled = true;
+
         } else if (itemId == R.id.settings) {
           navigateToSettings();
           handled = true;
+
         } else {
           handled = false;
         }
+
         return handled;
       }
     }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
   }
 
+  // ------------------------------------------------------------
+  // Button Listeners
+  // ------------------------------------------------------------
   private void setupListeners() {
-    binding.newProjectButton.setOnClickListener((v) -> navigateToDrawingCanvas());
+
+    // NEW PROJECT → show canvas size dialog
+    binding.newProjectButton.setOnClickListener((v) -> showCanvasSizeDialog());
+
+    // Palette management
     binding.paletteManagementButton.setOnClickListener((v) -> navigateToPaletteManagement());
   }
 
-  private void navigateToDrawingCanvas() {
+  // ------------------------------------------------------------
+  // NEW: Canvas Size Dialog
+  // ------------------------------------------------------------
+  private void showCanvasSizeDialog() {
+    String[] sizes = {"16", "32", "64", "128"};
+
+    new AlertDialog.Builder(requireContext())
+        .setTitle("New Project")
+        .setSingleChoiceItems(sizes, 1, null) // default = 32
+        .setPositiveButton("Create", (dialog, which) -> {
+          int selected = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+          int newSize = Integer.parseInt(sizes[selected]);
+          navigateToDrawingCanvas(newSize);
+        })
+        .setNegativeButton("Cancel", null)
+        .show();
+  }
+
+  // ------------------------------------------------------------
+  // Navigation
+  // ------------------------------------------------------------
+  private void navigateToDrawingCanvas(int canvasSize) {
+    Bundle args = new Bundle();
+    args.putInt("canvas_size", canvasSize);
+
     NavController navController = Navigation.findNavController(requireView());
-    navController.navigate(R.id.navigate_to_drawing_canvas);
+    navController.navigate(R.id.navigate_to_drawing_canvas, args);
   }
 
   private void navigateToPaletteManagement() {
@@ -124,11 +156,13 @@ public class ProjectGalleryFragment extends Fragment {
     navController.navigate(R.id.navigate_to_settings);
   }
 
+  // ------------------------------------------------------------
+  // Sign Out
+  // ------------------------------------------------------------
   private void signOut() {
     client.signOut().addOnCompleteListener((task) -> {
       NavController navController = Navigation.findNavController(requireView());
       navController.navigate(R.id.navigate_to_login);
     });
   }
-
 }

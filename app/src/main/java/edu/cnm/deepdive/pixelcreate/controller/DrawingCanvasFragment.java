@@ -53,9 +53,16 @@ public class DrawingCanvasFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    // -----------------------------
-    // File Picker Launchers
-    // -----------------------------
+    // ---------------------------------------------------------
+    // 1. Read canvas size from navigation arguments
+    // ---------------------------------------------------------
+    int canvasSize = getArguments() != null
+        ? getArguments().getInt("canvas_size", 32)
+        : 32;
+
+    // ---------------------------------------------------------
+    // 2. File Picker Launchers
+    // ---------------------------------------------------------
     saveLauncher = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(),
         result -> {
@@ -81,16 +88,21 @@ public class DrawingCanvasFragment extends Fragment {
         }
     );
 
-    // -----------------------------
-    // Layer Panel Setup
-    // -----------------------------
+    // ---------------------------------------------------------
+    // 3. Initialize canvas with chosen size
+    // ---------------------------------------------------------
+    binding.pixelCanvas.setGridSize(canvasSize);
+
+    // ---------------------------------------------------------
+    // 4. Layer Panel Setup
+    // ---------------------------------------------------------
     layerAdapter = new LayerAdapter(binding.pixelCanvas);
     binding.layerList.setLayoutManager(new LinearLayoutManager(requireContext()));
     binding.layerList.setAdapter(layerAdapter);
 
-    // -----------------------------
-    // Color Palette Setup
-    // -----------------------------
+    // ---------------------------------------------------------
+    // 5. Color Palette Setup
+    // ---------------------------------------------------------
     int[] colors = new int[]{
         Color.BLACK, Color.WHITE, Color.RED, Color.GREEN, Color.BLUE,
         Color.YELLOW, Color.CYAN, Color.MAGENTA, 0xFFFF8800, 0xFFAA66CC
@@ -103,9 +115,9 @@ public class DrawingCanvasFragment extends Fragment {
     binding.colorPalette.setLayoutManager(new LinearLayoutManager(requireContext()));
     binding.colorPalette.setAdapter(colorAdapter);
 
-    // -----------------------------
-    // Save Button
-    // -----------------------------
+    // ---------------------------------------------------------
+    // 6. Save Button
+    // ---------------------------------------------------------
     binding.saveButton.setOnClickListener(v -> {
       Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
       intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -114,9 +126,9 @@ public class DrawingCanvasFragment extends Fragment {
       saveLauncher.launch(intent);
     });
 
-    // -----------------------------
-    // Load Button
-    // -----------------------------
+    // ---------------------------------------------------------
+    // 7. Load Button
+    // ---------------------------------------------------------
     binding.loadButton.setOnClickListener(v -> {
       Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
       intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -124,13 +136,15 @@ public class DrawingCanvasFragment extends Fragment {
       loadLauncher.launch(intent);
     });
 
-    // -----------------------------
-    // Setup Toolbar Buttons (TOOLS, UNDO/REDO, EXPORT, ZOOM)
-    // -----------------------------
+    // ---------------------------------------------------------
+    // 8. Setup Toolbar Buttons (TOOLS, UNDO/REDO, EXPORT, ZOOM)
+    // ---------------------------------------------------------
     setupToolbar();
   }
 
-
+  // ---------------------------------------------------------
+  // Toolbar Setup
+  // ---------------------------------------------------------
   private void setupToolbar() {
 
     // Undo/Redo
@@ -179,7 +193,6 @@ public class DrawingCanvasFragment extends Fragment {
     highlightSelectedTool(binding.pencilButton);
   }
 
-
   private void highlightSelectedTool(View selectedButton) {
     binding.pencilButton.setAlpha(0.5f);
     binding.eraserButton.setAlpha(0.5f);
@@ -189,7 +202,9 @@ public class DrawingCanvasFragment extends Fragment {
     selectedButton.setAlpha(1.0f);
   }
 
-
+  // ---------------------------------------------------------
+  // Export PNG
+  // ---------------------------------------------------------
   private void exportToPng() {
     try {
       Bitmap bitmap = binding.pixelCanvas.exportToBitmap();
@@ -213,7 +228,6 @@ public class DrawingCanvasFragment extends Fragment {
       e.printStackTrace();
     }
   }
-
 
   @Override
   public void onDestroyView() {

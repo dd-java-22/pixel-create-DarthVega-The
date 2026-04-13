@@ -20,9 +20,12 @@ class PixelCanvasView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : View(context, attrs) {
 
-    private val gridSize = 32
+    // Layer manager now owns the grid size; start with 32x32.
+    private val layerManager = LayerManager(32)
 
-    private val layerManager = LayerManager(gridSize)
+    // Always read gridSize from the manager so resizing stays in sync.
+    private val gridSize: Int
+        get() = layerManager.gridSize
 
     private val gridPaint = Paint().apply {
         color = Color.LTGRAY
@@ -68,7 +71,6 @@ class PixelCanvasView @JvmOverloads constructor(
         val offsetYCenter = (height - gridSize * cellSize) / 2
 
         canvas.translate(offsetXCenter, offsetYCenter)
-
 
         // Draw all visible layers, bottom to top
         for (layer in layerManager.getLayers()) {
@@ -133,13 +135,12 @@ class PixelCanvasView @JvmOverloads constructor(
         val offsetXCenter = (width - gridSize * cellSize) / 2
         val offsetYCenter = (height - gridSize * cellSize) / 2
 
-// Reverse the transforms in the correct order
+        // Reverse the transforms in the correct order
         val canvasX = (event.x - offsetX) / scaleFactor - offsetXCenter
         val canvasY = (event.y - offsetY) / scaleFactor - offsetYCenter
 
         val col = floor(canvasX / cellSize).toInt()
         val row = floor(canvasY / cellSize).toInt()
-
 
         if (row in 0 until gridSize && col in 0 until gridSize) {
             when (currentTool) {
@@ -272,6 +273,14 @@ class PixelCanvasView @JvmOverloads constructor(
         currentTool = tool
     }
 
+    // NEW: Change canvas size at runtime.
+    fun setGridSize(newSize: Int) {
+        if (newSize == gridSize) return
+        layerManager.resizeCanvas(newSize)
+        resetZoom()
+        invalidate()
+    }
+
     fun exportToBitmap(): Bitmap {
         val bitmap = Bitmap.createBitmap(gridSize, gridSize, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
@@ -332,9 +341,8 @@ class PixelCanvasView @JvmOverloads constructor(
         try {
             val projectData = Gson().fromJson(json, ProjectData::class.java)
 
-            if (projectData.gridSize != gridSize) {
-                throw IllegalArgumentException("Grid size mismatch")
-            }
+            // Resize canvas to match project.
+            setGridSize(projectData.gridSize)
 
             // Clear existing layers
             while (layerManager.getLayers().size > 1) {
@@ -371,7 +379,9 @@ class PixelCanvasView @JvmOverloads constructor(
             }
 
             // Set the active layer index
-            layerManager.setActiveLayer(projectData.activeLayerIndex.coerceIn(0, layerManager.getLayers().lastIndex))
+            layerManager.setActiveLayer(
+                projectData.activeLayerIndex.coerceIn(0, layerManager.getLayers().lastIndex)
+            )
 
             invalidate()
         } catch (e: Exception) {
@@ -404,7 +414,6 @@ class PixelCanvasView @JvmOverloads constructor(
             e.printStackTrace()
         }
     }
-
 
     // Gesture listeners
 
