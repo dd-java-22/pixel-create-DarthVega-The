@@ -2,7 +2,7 @@ package edu.cnm.deepdive.pixelcreate
 
 import android.graphics.Color
 
-class LayerManager(val gridSize: Int) {  // <-- gridSize is now val so serializer can read it
+class LayerManager(var gridSize: Int) {  // <-- now var so canvas can resize
 
     private val layers = mutableListOf<PixelLayer>()
     var activeLayerIndex: Int = 0
@@ -17,13 +17,11 @@ class LayerManager(val gridSize: Int) {  // <-- gridSize is now val so serialize
         activeLayerIndex = layers.lastIndex
     }
 
-    // NEW: Add an existing layer (used by ProjectSerializer)
     fun addExistingLayer(layer: PixelLayer) {
         layers.add(layer)
         activeLayerIndex = layers.lastIndex
     }
 
-    // NEW: Clear all layers (used before loading)
     fun clearAllLayers() {
         layers.clear()
         activeLayerIndex = 0
@@ -40,11 +38,13 @@ class LayerManager(val gridSize: Int) {  // <-- gridSize is now val so serialize
         if (index in layers.indices) {
             val original = layers[index]
             val copy = PixelLayer(gridSize, original.visible, original.opacity)
+
             for (r in 0 until gridSize) {
                 for (c in 0 until gridSize) {
                     copy.pixels[r][c] = original.pixels[r][c]
                 }
             }
+
             layers.add(index + 1, copy)
             activeLayerIndex = index + 1
         }
@@ -110,4 +110,23 @@ class LayerManager(val gridSize: Int) {  // <-- gridSize is now val so serialize
         this.setActiveLayer(other.activeLayerIndex)
     }
 
+    // ------------------------------------------------------------
+    // NEW: Resize the entire canvas and all layers
+    // ------------------------------------------------------------
+    fun resizeCanvas(newSize: Int) {
+        if (newSize == gridSize) return
+
+        val newLayers = mutableListOf<PixelLayer>()
+
+        for (layer in layers) {
+            val resized = PixelLayer(layer, newSize)  // uses your new constructor
+            newLayers.add(resized)
+        }
+
+        layers.clear()
+        layers.addAll(newLayers)
+
+        gridSize = newSize
+        activeLayerIndex = activeLayerIndex.coerceIn(0, layers.lastIndex)
+    }
 }

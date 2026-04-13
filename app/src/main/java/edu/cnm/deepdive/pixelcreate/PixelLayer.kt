@@ -17,6 +17,25 @@ class PixelLayer(
     private val undoStack = ArrayDeque<Array<Array<Int>>>()
     private val redoStack = ArrayDeque<Array<Array<Int>>>()
 
+    // ------------------------------------------------------------
+    // NEW: Constructor for resizing (copying from an old layer)
+    // ------------------------------------------------------------
+    constructor(old: PixelLayer, newSize: Int) : this(
+        gridSize = newSize,
+        initialVisible = old.visible,
+        initialOpacity = old.opacity
+    ) {
+        val minSize = minOf(old.gridSize, newSize)
+        for (r in 0 until minSize) {
+            for (c in 0 until minSize) {
+                pixels[r][c] = old.pixels[r][c]
+            }
+        }
+    }
+
+    // ------------------------------------------------------------
+    // Undo/Redo
+    // ------------------------------------------------------------
     fun saveState() {
         undoStack.addLast(copyPixels())
         redoStack.clear()
