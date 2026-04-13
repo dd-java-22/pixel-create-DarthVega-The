@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.io.OutputStream;
 
@@ -36,7 +37,6 @@ public class DrawingCanvasFragment extends Fragment {
   private ColorSwatchAdapter colorAdapter;
   private ActivityResultLauncher<Intent> saveLauncher;
   private ActivityResultLauncher<Intent> loadLauncher;
-
 
   @Nullable
   @Override
@@ -85,7 +85,7 @@ public class DrawingCanvasFragment extends Fragment {
     // Layer Panel Setup
     // -----------------------------
     layerAdapter = new LayerAdapter(binding.pixelCanvas);
-    binding.layerList.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(requireContext()));
+    binding.layerList.setLayoutManager(new LinearLayoutManager(requireContext()));
     binding.layerList.setAdapter(layerAdapter);
 
     // -----------------------------
@@ -100,21 +100,8 @@ public class DrawingCanvasFragment extends Fragment {
       binding.pixelCanvas.setColor(color);
     });
 
-    binding.colorPalette.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(requireContext()));
+    binding.colorPalette.setLayoutManager(new LinearLayoutManager(requireContext()));
     binding.colorPalette.setAdapter(colorAdapter);
-
-    // -----------------------------
-    // Undo / Redo Buttons
-    // -----------------------------
-    binding.undoButton.setOnClickListener(v -> {
-      binding.pixelCanvas.undo();
-      layerAdapter.notifyDataSetChanged();
-    });
-
-    binding.redoButton.setOnClickListener(v -> {
-      binding.pixelCanvas.redo();
-      layerAdapter.notifyDataSetChanged();
-    });
 
     // -----------------------------
     // Save Button
@@ -136,30 +123,16 @@ public class DrawingCanvasFragment extends Fragment {
       intent.setType("*/*");
       loadLauncher.launch(intent);
     });
+
+    // -----------------------------
+    // Setup Toolbar Buttons (TOOLS, UNDO/REDO, EXPORT, ZOOM)
+    // -----------------------------
+    setupToolbar();
   }
 
-
-  private void setupLayerPanel() {
-    layerAdapter = new LayerAdapter(binding.pixelCanvas);
-    binding.layerList.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(requireContext()));
-    binding.layerList.setAdapter(layerAdapter);
-  }
-
-  private void setupColorPalette() {
-    int[] colors = new int[]{
-        Color.BLACK, Color.WHITE, Color.RED, Color.GREEN, Color.BLUE,
-        Color.YELLOW, Color.CYAN, Color.MAGENTA, 0xFFFF8800, 0xFFAA66CC
-    };
-
-    colorAdapter = new ColorSwatchAdapter(colors, color -> {
-      binding.pixelCanvas.setColor(color);
-    });
-
-    binding.colorPalette.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(requireContext()));
-    binding.colorPalette.setAdapter(colorAdapter);
-  }
 
   private void setupToolbar() {
+
     // Undo/Redo
     binding.undoButton.setOnClickListener(v -> {
       binding.pixelCanvas.undo();
@@ -192,29 +165,30 @@ public class DrawingCanvasFragment extends Fragment {
       highlightSelectedTool(binding.eyedropperButton);
     });
 
-    // Zoom and export
+    // Zoom reset
     binding.resetZoomButton.setOnClickListener(v -> {
       binding.pixelCanvas.resetZoom();
     });
 
+    // Export PNG
     binding.exportButton.setOnClickListener(v -> {
       exportToPng();
     });
 
-    // Set default tool highlight
+    // Default tool highlight
     highlightSelectedTool(binding.pencilButton);
   }
 
+
   private void highlightSelectedTool(View selectedButton) {
-    // Reset all tool buttons
     binding.pencilButton.setAlpha(0.5f);
     binding.eraserButton.setAlpha(0.5f);
     binding.fillBucketButton.setAlpha(0.5f);
     binding.eyedropperButton.setAlpha(0.5f);
 
-    // Highlight selected
     selectedButton.setAlpha(1.0f);
   }
+
 
   private void exportToPng() {
     try {
@@ -239,6 +213,7 @@ public class DrawingCanvasFragment extends Fragment {
       e.printStackTrace();
     }
   }
+
 
   @Override
   public void onDestroyView() {
