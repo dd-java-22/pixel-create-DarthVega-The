@@ -24,7 +24,11 @@ The Pixel Create application is currently in **active development** with core fu
 - ✅ **Custom Drawable Assets**: Vector icons for tools and navigation
 - ✅ **Layer Management UI**: Adapter and ViewHolder for displaying drawing layers
 - ✅ **Color Palette UI**: Adapter for color swatch selection
-- ✅ **Custom Canvas View**: PixelCanvasView with touch handling and zoom/pan support
+- ✅ **Canvas Creation Pop-up**: PixelCanvasView supports multiple canvas sizes to include: 16x16, 32x32, 64x64, and 128x128
+- ✅ **Undo/Redo Buttons**: PixelCanvasView with undo/redo functionality integrated into DrawingCanvasFragment
+- 
+
+
 
 ---
 
@@ -34,74 +38,27 @@ These are the most critical issues that must be resolved before the app can be c
 
 ### Critical (Must Fix Immediately)
 
-1. **Drawing Canvas Not Functional**
-   - **Issue**: The DrawingCanvasFragment does not properly render or save pixel data
-   - **Impact**: Users cannot create or edit pixel art (core functionality broken)
-   - **Fix Required**: Implement pixel rendering from database, drawing tools (pencil, eraser, fill bucket), and saving pixel changes to Room Database
-
-2. **Project Gallery Shows No Data**
-   - **Issue**: ProjectGalleryFragment does not display saved projects from the database
-   - **Impact**: Users cannot browse, open, or manage existing projects
-   - **Fix Required**: Implement RecyclerView with ProjectAdapter to query and display projects from the database with thumbnail previews
-
-3. **No Project Creation Workflow**
-   - **Issue**: There is no UI or logic for creating new projects with custom canvas dimensions
-   - **Impact**: Users have no way to start a new pixel art project
-   - **Fix Required**: Add dialog or screen for new project creation with canvas size input, then insert project/layer/pixel records into the database
-
-4. **SharedPreferences Not Read or Applied**
+1.**SharedPreferences Not Read or Applied**
    - **Issue**: Settings values are saved but not utilized anywhere in the app
    - **Impact**: User preferences have no effect on app behavior
    - **Fix Required**: Read default canvas width/height when creating new projects; apply grid visibility and theme preferences in DrawingCanvasFragment
 
-5. **Palette Management Not Connected to Drawing**
+2.**Palette Management Not Connected to Drawing**
    - **Issue**: PaletteManagementFragment exists but does not populate or save palette data
    - **Impact**: Users cannot create or use custom color palettes
    - **Fix Required**: Implement palette CRUD operations with database integration, and connect selected palette to drawing canvas
 
 ### High Priority (Needed for Basic Usability)
 
-6. **No Save/Load Functionality for Projects**
-   - **Issue**: Even if drawing works, there's no "Save Project" or "Load Project" implementation
-   - **Impact**: All work is lost when navigating away from the canvas
-   - **Fix Required**: Implement save button to persist pixels to database, and load functionality to restore pixel data when opening a project
-
-7. **Undo/Redo Buttons Not Implemented**
-   - **Issue**: Buttons exist in the UI but have no functionality
-   - **Impact**: Users cannot correct mistakes
-   - **Fix Required**: Implement action history stack with undo/redo logic
-
-8. **Layer Visibility Toggle Not Working**
-   - **Issue**: Layer eye icon exists but visibility changes don't affect canvas rendering
-   - **Impact**: Users cannot hide/show layers
-   - **Fix Required**: Update PixelCanvasView to respect layer visibility flags from database
-
-9. **No Thumbnail Generation**
+3.**No Thumbnail Generation**
    - **Issue**: Project thumbnails are not generated or updated
    - **Impact**: Gallery will show blank thumbnails even if projects exist
    - **Fix Required**: Generate thumbnail bitmap when saving project and store as BLOB in database
 
-10. **Export Functionality Missing**
-    - **Issue**: No implementation of PNG export to device storage
-    - **Impact**: Users cannot share or save their artwork outside the app
-    - **Fix Required**: Implement canvas-to-bitmap conversion and MediaStore integration for saving to gallery
 
 ### Medium Priority (Functional Gaps)
-
-11. **No Project Deletion or Renaming**
+4.**No Project Deletion or Renaming**
     - **Fix Required**: Add context menu or swipe actions in gallery for delete/rename operations
-
-12. **Fill Bucket Tool Not Implemented**
-    - **Fix Required**: Implement flood-fill algorithm for the fill bucket tool
-
-13. **Color Picker Tool Not Implemented**
-    - **Fix Required**: Add eyedropper tool to sample colors from existing pixels
-
-14. **Zoom Reset Not Working**
-    - **Fix Required**: Implement zoom reset button to return to 1:1 scale
-
-15. **No Layer Reordering**
-    - **Fix Required**: Implement drag-and-drop or up/down arrows for changing layer order
 
 ---
 

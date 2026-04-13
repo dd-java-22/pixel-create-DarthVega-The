@@ -33,6 +33,8 @@ This guide provides instructions for using the Pixel Create pixel art applicatio
 
 The canvas is where you create and edit your pixel art.
 
+Before work can start on a new project, the user must select a canvas size. Option include 16x16, 32x32, 64x64, and 128x128
+
 ### Interface Overview
 
 The drawing canvas includes:
